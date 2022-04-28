@@ -4,7 +4,7 @@ public class Tour {
     private String startDate;
     private String endDate;
 
-    //rota için linked list kullanılabilir.
+    // rota için linked list kullanılabilir.
     private String[] route;
 
     private Ticket[] participants;

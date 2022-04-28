@@ -1,7 +1,5 @@
 package com.cagla;
 
 public class Ticket {
-    tour
-    alan kişi adı
-    isCanceled;
+    // TODO: TOUR , ALAN KISI ADI, isCanceled()
 }
