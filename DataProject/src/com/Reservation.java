@@ -1,4 +1,4 @@
-package com.cagla;
+package com;
 
 public class Reservation {
 }
