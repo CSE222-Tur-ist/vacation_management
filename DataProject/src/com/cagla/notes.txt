@@ -7,3 +7,10 @@ customer -suggestion & request gitti..
 
 tour manager ticketların geldi/gelmedi statüsünü değiştirebilir, geldi işaretlenen ticketların sahipleri
 turlara yorum ve puan bırakabilir.
+
+
+hotel manager ve tour manager da customer gibi kayıt olabiliyor. Adminden izin almalı ?
+ekleme yaparken adminin onay vermesi lazım ama silme yaparken gerek yok?
+
+tarih uygunluk kontrolü
+aynı tur ismine sahip başka tur eklenmemeli -> bilet alırken sıkıntı çıkar
