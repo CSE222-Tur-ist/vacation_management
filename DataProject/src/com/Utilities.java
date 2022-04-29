@@ -1,4 +1,4 @@
 package com;
 
-public abstract class Utilities {
+public class Utilities {
 }
