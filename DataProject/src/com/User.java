@@ -1,12 +1,17 @@
 package com;
 
+
 public class User extends Utilities implements IUser{
 
     private String username;
+
+
+
     private String name;
     private String surName;
     private final String ID;
     private String password;
+
     private String role;
     private String email;
 
@@ -36,7 +41,9 @@ public class User extends Utilities implements IUser{
     }
 
     @Override
+
     public String getID() { return ID; }
+
 
     @Override
     public String getPassword() {
@@ -55,6 +62,7 @@ public class User extends Utilities implements IUser{
     }
 
     @Override
+
     public void setName(String name) {
         this.name = name;
     }
@@ -80,3 +88,4 @@ public class User extends Utilities implements IUser{
     }
 
 }
+

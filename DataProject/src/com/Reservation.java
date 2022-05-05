@@ -1,5 +1,6 @@
 package com;
 
+
 import java.util.*;
 
 /**
@@ -12,4 +13,4 @@ public class Reservation {
 
     private String[] participants;
     private String payment; // this price will be calculated according to the number of participants and dates
-}
+

@@ -1,5 +1,6 @@
 package com;
 
+
 import java.util.*;
 
 public class Customer extends User {
@@ -20,11 +21,13 @@ public class Customer extends User {
     // STACK.
     private Stack<Hotel> favoriteHotels = new Stack<>();
 
+
     // tarihi en yakın olan turu önce gösterecek şekilde => araya ekleme
     // yapılabilmesi için
     // bst olamaz çünkü aynı tarihli turları birbiri üzerine yazar.
     // heap olabilir belki???
     // PRIORITY QUEUE.
+
     private Stack<Tour> favoriteTours = new Stack<>();
     public static Scanner input = new Scanner(System.in);
 
@@ -116,6 +119,7 @@ public class Customer extends User {
             return true;
         }
         else return false;
+
     }
 
     public boolean cancelTicket(Ticket tickets) {
@@ -126,6 +130,7 @@ public class Customer extends User {
     // ticketları görüntülemek için view function.
     private void viewTickets() {
     }
+
 
     // priority queue kullanıldı kendi oluşturduğum Comparator ile
     public void searchHotels(){
@@ -186,7 +191,6 @@ public class Customer extends User {
         }
     }
 
-
     public boolean makeReservationForHotel(Hotel chosenHotel) {
         return false;
         // check for availability
@@ -220,6 +224,7 @@ public class Customer extends User {
     // buyTicket veya makeReservation fonksiyonları içinde çağrılacak.
     private boolean makePayment() {
         return true;
+
     }
 
     private void rateHotel() {
@@ -255,5 +260,5 @@ public class Customer extends User {
 
     // public void aboutUs(){}
     // public void viewFAQ(){}
-
 }
+

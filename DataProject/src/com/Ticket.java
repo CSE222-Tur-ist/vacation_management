@@ -8,4 +8,5 @@ public class Ticket {
     private String[] participants;
 
     private boolean isCanceled;
+
 }

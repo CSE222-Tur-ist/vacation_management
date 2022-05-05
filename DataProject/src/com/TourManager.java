@@ -107,5 +107,4 @@ public class TourManager extends User {
         }
         return false;
     }
-
 }

@@ -5,6 +5,7 @@ import java.util.*;
 /**
  * Otel bilgileri
  */
+
 public class Hotel {
 
     protected String name;
@@ -21,25 +22,30 @@ public class Hotel {
     protected String[] comments;
     protected int[] rates;
 
-    protected double aveRate=0;
+    protected int rateSize = 0;
+
+    protected double aveRate= 0.0;
 
     @Override
     public String toString() {
-        String str = new String();
-        str += name.toUpperCase(Locale.ROOT) +"\n";
-        for(int i=0;i<name.length();i++) str+="-";
-        str += "\nLocation : "+location+"\n";
-        str += "Features : "+features+"\n";
-        str += "Start Date : "+startDate+"\n";
-        str += "End Date : "+endDate+"\n";
-        str += "Price : "+price+" ₺\n";
-        str += "Comments\n";
-        for(int i=0;i<comments.length;i++) str+=comments[i]+"\n";
+        StringBuilder str = new StringBuilder();
+
+        str.append(name.toUpperCase(Locale.ROOT)).append("\n");
+        str.append("-".repeat(name.length()));
+        str.append("\nLocation : ").append(location).append("\n");
+        str.append("Features : ").append(features).append("\n");
+        str.append("Start Date : ").append(startDate).append("\n");
+        str.append("End Date : ").append(endDate).append("\n");
+        str.append("Price : ").append(price).append(" ₺\n");
+        str.append("Comments\n");
+        for (String comment : comments)
+            str.append(comment).append("\n");
 
         // ortalama hespalama değişebilir
-        for(int i=0;i<rates.length;i++) aveRate+=rates[i];
-        aveRate = aveRate/rates.length;
-        str += "Rate : "+aveRate+"\n";
-        return str;
+        for (int rate : rates)
+            aveRate += rate;
+        aveRate = aveRate/rateSize;
+        str.append("Rate : ").append(aveRate).append("\n");
+        return str.toString();
     }
 }

@@ -7,4 +7,4 @@ public class Utilities {
 
     static ArrayList<Tour>  tourrequest = new ArrayList<>(); // tours added by manager but not confirmed yet
     static ArrayList<Hotel>  hotelrequest = new ArrayList<>(); // hotels added by manager but not confirmed yet
-}
+
