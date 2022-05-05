@@ -42,12 +42,11 @@ public class Main {
         System.out.print("Password : ");
         password = input.nextLine();
 
-        String loginAs = login(email_username,password);
+        User.userType loginAs = login(email_username,password);
         if(loginAs != null) {
             System.out.println("\nLogin as "+loginAs+" is succesfull.");
 
             // buraya kim olarak giriş yapıldıysa o classın menusunu çagır (her classın kendi menusu olmalı)
-
 
             return true;
         } // if username, email and password is paired correctly for a user on system.
@@ -58,12 +57,11 @@ public class Main {
     }
     /***
      * choose who you are, then input your information.
-     * 
-     * @param email
+     * @param email_username
      * @param password
      * @return
      */
-    private static String login(String email_username, String password) {
+    private static User.userType login(String email_username, String password) {
         for(User loginUser : users){
             if(loginUser.getEmail().equals(email_username)){
                 if(loginUser.getPassword().equals(password)){ // email and password paired correctly
@@ -119,7 +117,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new Customer(username,name,surName,ID,password,"customer",phoneNumber,email));
+            users.add(new Customer(username,name,surName,ID,password, User.userType.CUSTOMER,phoneNumber,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -146,7 +144,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new TourManager(username,name,surName,ID,password,"tourmanager",email));
+            users.add(new TourManager(username,name,surName,ID,password, User.userType.TOUR_MANAGER,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -174,7 +172,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new HotelManager(username,name,surName,ID,password,"hotelmanager",email));
+            users.add(new HotelManager(username,name,surName,ID,password, User.userType.HOTEL_MANAGER,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }

@@ -6,7 +6,7 @@ public class HotelManager extends User {
 
     public static Scanner input = new Scanner(System.in);
 
-    public HotelManager(String username,String name, String surName, String ID, String password,String role,String email) {
+    public HotelManager(String username,String name, String surName, String ID, String password,User.userType role,String email) {
         super(username,name, surName, ID, password,role,email);
     }
 
@@ -21,10 +21,6 @@ public class HotelManager extends User {
         newhotel.features = input.nextLine();
         System.out.print("Number of Suitable Rooms : ");
         newhotel.numberofRooms = input.nextInt();
-        System.out.print("Appropriate Start Date for Reservation : ");
-        newhotel.startDate = input.nextLine();
-        System.out.print("Appropriate End Date for Reservation : ");
-        newhotel.endDate = input.nextLine();
         System.out.print("Price for One Night and One Person : ");
         newhotel.price = input.nextDouble();
 
@@ -49,7 +45,7 @@ public class HotelManager extends User {
                 do {
                     System.out.println("      Update Menu      ");
                     System.out.println("-----------------------");
-                    System.out.println("1. Features\n2. Start Date\n3. End Date\n4. Price\n5. Number of Rooms\n6. Exit");
+                    System.out.println("1. Features\n2. Price\n3. Number of Rooms\n4. Exit");
                     System.out.print("Enter : ");
                     select = input.nextInt();
                     switch (select) {
@@ -58,24 +54,17 @@ public class HotelManager extends User {
                             updateHotel.features = input.nextLine();
                             break;
                         case 2:
-                            System.out.print("Appropriate Start Date for Reservation : ");
-                            updateHotel.startDate = input.nextLine();
-                            break;
-                        case 3:
-                            System.out.print("Appropriate End Date for Reservation : ");
-                            updateHotel.endDate = input.nextLine();
-                            break;
-                        case 4:
                             System.out.print("Price for One Night and One Person : ");
                             updateHotel.price = input.nextDouble();
                             break;
-                        case 5:
+                        case 3:
                             System.out.print("Remaining Number of Rooms : ");
                             updateHotel.numberofRooms = input.nextInt();
                             break;
-                        case 6: return true;
+                        case 4:
+                            return true;
                         default:
-                            System.out.println("Your choice is not correct !");
+                            System.out.println("Invalid input!");
                             break;
                     }
                 }while(select!=6);

@@ -7,16 +7,13 @@ import java.util.*;
  */
 
 public class Hotel {
-
+    private static final BinarySearchTree<Reservation> reservations = new BinarySearchTree<Reservation>();
     protected String name;
     protected String location;
 
     protected int numberofRooms;
 
     protected String features; // denize sıfır, özel plaj, aquapark, wifi falan
-
-    protected String startDate;
-    protected String endDate;
 
     protected double price;
     protected String[] comments;
@@ -26,6 +23,17 @@ public class Hotel {
 
     protected double aveRate= 0.0;
 
+    public Hotel(String name, String location, int numberofRooms, String features, double price) {
+        this.name = name;
+        this.location = location;
+        this.numberofRooms = numberofRooms;
+        this.features = features;
+        this.price = price;
+    }
+
+    public Hotel() {
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -34,8 +42,6 @@ public class Hotel {
         str.append("-".repeat(name.length()));
         str.append("\nLocation : ").append(location).append("\n");
         str.append("Features : ").append(features).append("\n");
-        str.append("Start Date : ").append(startDate).append("\n");
-        str.append("End Date : ").append(endDate).append("\n");
         str.append("Price : ").append(price).append(" ₺\n");
         str.append("Comments\n");
         for (String comment : comments)
