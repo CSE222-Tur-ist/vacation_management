@@ -28,7 +28,7 @@ Data Structures and their usages:
 
 
 CUSTOMER: ali, bensu
-TOUR MANAGER: a 
+TOUR MANAGER: a a
 HOTEL MANAGER:
 ADMIN:
 hotel ,tour, ticket eksiklikleri doldurulucak.
