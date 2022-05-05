@@ -153,7 +153,7 @@ public class Customer extends User {
         }
     }
     private  void sortbyRate() {
-        PriorityQueue<Hotel> pqR = new PriorityQueue<Hotel>(hotels.size(), new rateComparator());
+        PriorityQueue<Hotel> pqR = new PriorityQueue<Hotel>(hotels.size(), new rateComparatorH());
         for(Hotel nextHotel : hotels){
             pqR.add(nextHotel);
         }
@@ -164,7 +164,7 @@ public class Customer extends User {
         }
     }
     private  void sortbyAlphabetic() {
-        PriorityQueue<Hotel> pqA = new PriorityQueue<Hotel>(hotels.size(), new nameComparator());
+        PriorityQueue<Hotel> pqA = new PriorityQueue<Hotel>(hotels.size(), new nameComparatorH());
         for(Hotel nextHotel : hotels){
             pqA.add(nextHotel);
         }
@@ -175,7 +175,7 @@ public class Customer extends User {
         }
     }
     private  void sortbyPrice(){
-        PriorityQueue<Hotel> pqP = new PriorityQueue<Hotel>(hotels.size(), new priceComparator());
+        PriorityQueue<Hotel> pqP = new PriorityQueue<Hotel>(hotels.size(), new priceComparatorH());
         for(Hotel nextHotel : hotels){
             pqP.add(nextHotel);
         }
