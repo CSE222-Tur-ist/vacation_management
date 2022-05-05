@@ -15,6 +15,7 @@ public class Tour {
     protected double price;
     protected String[] comments;
     protected int[] rates;
+
     protected int rateSize = 0;
 
     protected double aveRate = 0.0;

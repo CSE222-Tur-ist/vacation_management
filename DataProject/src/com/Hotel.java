@@ -1,6 +1,10 @@
 package com;
 
-import java.util.Locale;
+import java.util.*;
+
+/**
+ * Otel bilgileri
+ */
 
 public class Hotel {
 
@@ -17,6 +21,7 @@ public class Hotel {
     protected double price;
     protected String[] comments;
     protected int[] rates;
+
     protected int rateSize = 0;
 
     protected double aveRate= 0.0;

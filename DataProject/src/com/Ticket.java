@@ -1,7 +1,12 @@
 package com;
 
 public class Ticket {
-    tour
-    alan kişi adı
-            isCanceled;
+    // TODO: TOUR , ALAN KISI ADI, isCanceled()
+    private String startDate;
+    private String endDate;
+
+    private String[] participants;
+
+    private boolean isCanceled;
+
 }
