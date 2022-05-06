@@ -20,6 +20,10 @@ public class Tour {
 
     protected double aveRate = 0.0;
 
+    public Tour(){
+
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();

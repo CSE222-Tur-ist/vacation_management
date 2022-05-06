@@ -1,21 +1,19 @@
 package com;
 
 
-public class User extends Utilities implements IUser{
+public abstract class User extends Utilities implements IUser{
 
+    public enum userType {ADMIN, CUSTOMER, HOTEL_MANAGER, TOUR_MANAGER}
     private String username;
-
-
-
     private String name;
     private String surName;
     private final String ID;
     private String password;
 
-    private String role;
+    private userType role;
     private String email;
 
-    public User(String username,String name, String surName, String ID, String password,String role,String email) {
+    public User(String username,String name, String surName, String ID, String password,userType role,String email) {
         this.username = username;
         this.name = name;
         this.surName = surName;
@@ -51,7 +49,7 @@ public class User extends Utilities implements IUser{
     }
 
     @Override
-    public String getRole() { return role; }
+    public userType getRole() { return role; }
 
     @Override
     public String getEmail() { return email; }
@@ -78,7 +76,7 @@ public class User extends Utilities implements IUser{
     }
 
     @Override
-    public void setRole(String role) {
+    public void setRole(userType role) {
         this.role = role;
     }
 
