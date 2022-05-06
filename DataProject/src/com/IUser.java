@@ -13,7 +13,7 @@ public interface IUser {
     public String getPassword();
 
 
-    public String getRole();
+    public User.userType getRole();
 
     public String getEmail();
 
@@ -25,7 +25,7 @@ public interface IUser {
 
     void setPassword(String password);
 
-    void setRole(String role);
+    void setRole(User.userType role);
 
     void setEmail(String email);
 

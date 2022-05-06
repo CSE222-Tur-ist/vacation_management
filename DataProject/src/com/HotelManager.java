@@ -6,7 +6,7 @@ public class HotelManager extends User {
 
     public static Scanner input = new Scanner(System.in);
 
-    public HotelManager(String username,String name, String surName, String ID, String password,String role,String email) {
+    public HotelManager(String username,String name, String surName, String ID, String password,User.userType role,String email) {
         super(username,name, surName, ID, password,role,email);
     }
 
@@ -21,14 +21,13 @@ public class HotelManager extends User {
         newhotel.features = input.nextLine();
         System.out.print("Number of Suitable Rooms : ");
         newhotel.numberofRooms = input.nextInt();
-        System.out.print("Appropriate Start Date for Reservation : ");
-        newhotel.startDate = input.nextLine();
-        System.out.print("Appropriate End Date for Reservation : ");
-        newhotel.endDate = input.nextLine();
         System.out.print("Price for One Night and One Person : ");
         newhotel.price = input.nextDouble();
 
-        hotelrequest.add(newhotel); // new hotel request to admin
+        for(Hotel nextHotel : hotels){
+            if(nextHotel.name.equals(newhotel.name)) System.out.print("This name already exists !");
+            else hotels.add(newhotel);
+        }
     }
 
     public void updateHotelInformation(){
@@ -43,13 +42,13 @@ public class HotelManager extends User {
     private boolean updateHotelInformation(String hotelName){
         int select;
         for(Hotel updateHotel : hotels){
-            if(updateHotel.getClass().getName().equals(hotelName)){
+            if(updateHotel.name.equals(hotelName)){
                 if(input.hasNextLine()) input.nextLine(); // clear buffer
 
                 do {
                     System.out.println("      Update Menu      ");
                     System.out.println("-----------------------");
-                    System.out.println("1. Features\n2. Start Date\n3. End Date\n4. Price\n5. Number of Rooms\n6. Exit");
+                    System.out.println("1. Features\n2. Price\n3. Number of Rooms\n4. Exit");
                     System.out.print("Enter : ");
                     select = input.nextInt();
                     switch (select) {
@@ -58,24 +57,17 @@ public class HotelManager extends User {
                             updateHotel.features = input.nextLine();
                             break;
                         case 2:
-                            System.out.print("Appropriate Start Date for Reservation : ");
-                            updateHotel.startDate = input.nextLine();
-                            break;
-                        case 3:
-                            System.out.print("Appropriate End Date for Reservation : ");
-                            updateHotel.endDate = input.nextLine();
-                            break;
-                        case 4:
                             System.out.print("Price for One Night and One Person : ");
                             updateHotel.price = input.nextDouble();
                             break;
-                        case 5:
+                        case 3:
                             System.out.print("Remaining Number of Rooms : ");
                             updateHotel.numberofRooms = input.nextInt();
                             break;
-                        case 6: return true;
+                        case 4:
+                            return true;
                         default:
-                            System.out.println("Your choice is not correct !");
+                            System.out.println("Invalid input!");
                             break;
                     }
                 }while(select!=6);
@@ -91,12 +83,12 @@ public class HotelManager extends User {
         System.out.print("Name of Hotel : ");
         hotelName = input.nextLine();
 
-       if(deleteHotel(hotelName)) System.out.println("\nHotel removed Succesfully.");
-       else System.out.println("\nHotel remove is unsuccesfull.");
+        if(deleteHotel(hotelName)) System.out.println("\nHotel removed Succesfully.");
+        else System.out.println("\nHotel remove is unsuccesfull.");
     }
     private boolean deleteHotel(String hotelName){
         for(Hotel deleteHotel : hotels) {
-            if(deleteHotel.getClass().getName().equals(hotelName)){
+            if(deleteHotel.name.equals(hotelName)){
                 hotels.remove(deleteHotel);
                 return true;
             }
