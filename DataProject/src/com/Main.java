@@ -42,12 +42,11 @@ public class Main {
         System.out.print("Password : ");
         password = input.nextLine();
 
-        String loginAs = login(email_username,password);
+        User.userType loginAs = login(email_username,password);
         if(loginAs != null) {
             System.out.println("\nLogin as "+loginAs+" is succesfull.");
 
             // buraya kim olarak giriş yapıldıysa o classın menusunu çagır (her classın kendi menusu olmalı)
-
 
             return true;
         } // if username, email and password is paired correctly for a user on system.
@@ -58,12 +57,11 @@ public class Main {
     }
     /***
      * choose who you are, then input your information.
-     * 
-     * @param email
+     * @param email_username
      * @param password
      * @return
      */
-    private static String login(String email_username, String password) {
+    private static User.userType login(String email_username, String password) {
         for(User loginUser : users){
             if(loginUser.getEmail().equals(email_username)){
                 if(loginUser.getPassword().equals(password)){ // email and password paired correctly
@@ -83,16 +81,17 @@ public class Main {
         int choosenRole;
 
         if(input.hasNextLine()) input.nextLine(); // clear buffer
-
-        System.out.println("Choose role to register");
+        System.out.println("Register as Customer");
+        //System.out.println("Choose role to register");
         System.out.println("-----------------------");
-        System.out.println("1. Customer\n2. Tour Manager\n3. Hotel Manager");
-        System.out.print("Enter : ");
-        choosenRole = input.nextInt();
+        //System.out.println("1. Customer\n2. Tour Manager\n3. Hotel Manager");
+        //System.out.print("Enter : ");
+        //choosenRole = input.nextInt();
+        choosenRole = 1;
         switch (choosenRole){
             case 1: return registerCustomer();
-            case 2: return registerTourManager();
-            case 3: return registerHotelManager();
+            //case 2: return registerTourManager();
+            //case 3: return registerHotelManager();
             default: System.out.println("Your choice is not correct !"); return false;
         }
     }
@@ -119,7 +118,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new Customer(username,name,surName,ID,password,"customer",phoneNumber,email));
+            users.add(new Customer(username,name,surName,ID,password, User.userType.CUSTOMER,phoneNumber,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -146,7 +145,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new TourManager(username,name,surName,ID,password,"tourmanager",email));
+            users.add(new TourManager(username,name,surName,ID,password, User.userType.TOUR_MANAGER,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -174,7 +173,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new HotelManager(username,name,surName,ID,password,"hotelmanager",email));
+            users.add(new HotelManager(username,name,surName,ID,password, User.userType.HOTEL_MANAGER,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }

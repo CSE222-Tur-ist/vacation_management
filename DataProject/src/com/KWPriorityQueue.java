@@ -117,7 +117,7 @@ public class KWPriorityQueue <E> extends AbstractQueue <E> implements Queue <E> 
         if (comparator != null) { // A Comparator is defined.
             return comparator.compare(left, right);
         }
-        else { // Use left�s compareTo method.
+        else { // Use left's compareTo method.
             return ( (Comparable <E> ) left).compareTo(right);
         }
     }
