@@ -2,6 +2,7 @@ package com;
 
 import java.util.LinkedList;
 import java.util.Locale;
+import java.util.Queue;
 
 public class Tour {
     protected String startDate;
@@ -13,8 +14,8 @@ public class Tour {
     protected LinkedList<String> route = new LinkedList<>();
 
     protected double price;
-    protected String[] comments;
-    protected int[] rates;
+    protected Queue<String> comments;
+    protected Queue<Integer> rates;
 
     protected int rateSize = 0;
 

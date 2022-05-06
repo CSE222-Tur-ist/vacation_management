@@ -222,6 +222,7 @@ public class Customer extends User {
             if(reservation.reservationName.equals(nextHotel.name)){
                 nextHotel.numberofRooms++;
                 adjustCalendarforReservation(reservation.startDay,reservation.startMonth,reservation.endDay,reservation.endMonth,nextHotel,false);
+                reservations.remove(reservation);
                 return true;
             }
         }
@@ -291,29 +292,111 @@ public class Customer extends User {
     private void rateHotel() {
         // cancel edilmemiş rezervasyonlardan otel bilgilerini çekip
         // sıralayarak hangisini puanlayacağını seçsin.
-
         // hotel classının içindeki data fieldda.
+
+        int reservationNumber;
+        int rateNumber;
+
+        viewReservations();
+        System.out.print("\nSelect Hotel to rate : ");
+        reservationNumber = input.nextInt();
+
+        System.out.print("\nPlease type your rate point (0-10 scale) : ");
+        rateNumber = input.nextInt();
+
+        if(reservationNumber>reservations.size() || (rateNumber < 0 || rateNumber > 10)) {
+            System.out.println("Rate operation failed !");
+        } else {
+            for(Hotel nextHotel : hotels){
+                if(reservations.get(reservationNumber).reservationName.equals(nextHotel.name)){
+                    nextHotel.rates.add(rateNumber);
+                    nextHotel.rateSize++;
+                }
+            }
+            System.out.println("Hotel Rate operation done successfully");
+        }
     }
 
     public void leaveCommentToHotel() {
         // cancel edilmemiş rezervasyonlardan otel bilgilerini çekip
         // sıralayarak hangisine yorum bırakacağını seçsin.
-
         // hotel classının içindeki data fieldda.
+
+        int reservationNumber;
+        String comment;
+
+        viewReservations();
+        System.out.print("\nSelect Hotel to comment : ");
+        reservationNumber = input.nextInt();
+
+        System.out.print("\nPlease type your comment : ");
+        comment = input.nextLine();
+
+        if(reservationNumber>reservations.size()) {
+            System.out.println("Comment operation failed !");
+        } else {
+            for(Hotel nextHotel : hotels){
+                if(reservations.get(reservationNumber).reservationName.equals(nextHotel.name)){
+                    nextHotel.comments.add(comment);
+                }
+            }
+            System.out.println("Hotel Comment operation done successfully");
+        }
     }
 
     private void rateTour() {
         // cancel edilmemiş ve geçmişte kalmış ticketlardan tur bilgilerini çekip
         // sıralayarak hangisini puanlayacağını seçsin.
-
         // tur classının içindeki data fieldda.
+
+        int tourNumber;
+        int rateNumber;
+
+        viewTickets();
+        System.out.print("\nSelect Tour to rate : ");
+        tourNumber = input.nextInt();
+
+        System.out.print("\nPlease type your rate point (0-10 scale) : ");
+        rateNumber = input.nextInt();
+
+        if(tourNumber>tickets.size() || (rateNumber < 0 || rateNumber > 10)) {
+            System.out.println("Rate operation failed !");
+        } else {
+            for(Tour nextTour : tours){
+                if(tickets.get(tourNumber).ticketName.equals(nextTour.name)){
+                    nextTour.rates.add(rateNumber);
+                    nextTour.rateSize++;
+                }
+            }
+            System.out.println("Tour Rate operation done successfully");
+        }
     }
 
     public void leaveCommentToTour() {
         // cancel edilmemiş ticketlardan tur bilgilerini çekip
         // sıralayarak hangisini yorumlayacağını seçsin.
-
         // hotel classının içindeki data fieldda.
+
+        int tourNumber;
+        String comment;
+
+        viewTickets();
+        System.out.print("\nSelect Tour to comment : ");
+        tourNumber = input.nextInt();
+
+        System.out.print("\nPlease type your comment : ");
+        comment = input.nextLine();
+
+        if(tourNumber>tickets.size()) {
+            System.out.println("Comment operation failed !");
+        } else {
+            for(Tour nextTour : tours){
+                if(tickets.get(tourNumber).ticketName.equals(nextTour.name)){
+                    nextTour.comments.add(comment);
+                }
+            }
+            System.out.println("Tour Comment operation done successfully");
+        }
     }
 
     public void report() {
