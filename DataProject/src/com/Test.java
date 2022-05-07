@@ -5,7 +5,7 @@ import com.entity.*;
 public class Test {
 
     public static void main(String[] args) {
-        UserTests.Test_Admin();
+        // UserTests.Test_Admin();
 
 
     }
