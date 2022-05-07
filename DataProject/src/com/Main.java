@@ -5,6 +5,7 @@ public class Main {
 
     // Keeps users
     static ArrayList<User> users = new ArrayList<>();
+    static int userIndex = 0; //use in login method
 
     public static Scanner input = new Scanner(System.in);
 
@@ -47,6 +48,12 @@ public class Main {
             System.out.println("\nLogin as "+loginAs+" is succesfull.");
 
             // buraya kim olarak giriş yapıldıysa o classın menusunu çagır (her classın kendi menusu olmalı)
+            switch (loginAs){
+//                case ADMIN: ((Admin)users.get(userIndex))adminMenu(); break;
+                case CUSTOMER: ((Customer)users.get(userIndex)).customerMenu(); break;
+//                case HOTEL_MANAGER: ((HotelManager)users.get(userIndex))hotelManagerMenu(); break;
+//                case TOUR_MANAGER: ((TourManager)users.get(userIndex))tourManagerMenu(); break;
+            }
 
             return true;
         } // if username, email and password is paired correctly for a user on system.
@@ -62,14 +69,18 @@ public class Main {
      * @return
      */
     private static User.userType login(String email_username, String password) {
+        int counter = -1;
         for(User loginUser : users){
+            counter++;
             if(loginUser.getEmail().equals(email_username)){
                 if(loginUser.getPassword().equals(password)){ // email and password paired correctly
+                    userIndex = counter;
                     return loginUser.getRole(); // role of user to print menu of that role
                 }
             }
             if(loginUser.getUsername().equals(email_username)){
                 if(loginUser.getPassword().equals(password)){ // email and password paired correctly
+                    userIndex = counter;
                     return loginUser.getRole(); // role of user to print menu of that role
                 }
             }
