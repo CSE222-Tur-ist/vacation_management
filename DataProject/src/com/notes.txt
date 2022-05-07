@@ -14,3 +14,22 @@ ekleme yaparken adminin onay vermesi lazım ama silme yaparken gerek yok?
 
 tarih uygunluk kontrolü
 aynı tur ismine sahip başka tur eklenmemeli -> bilet alırken sıkıntı çıkar
+
+
+5 May 22 -- updates
+- admin classının methodları?
+
+Data Structures and their usages:
+- priority queue: customer içinde
+- stack: favourite tours, favorite hotels, reservations in customer
+- arraylist: utilities kısmında, database olarak.
+- bst: reservations in hotel class.
+    - bst implementation - done.
+
+
+CUSTOMER: ali, bensu
+TOUR MANAGER: ayşegül, zeynep
+HOTEL MANAGER: ömer, ayşe elif
+ADMIN: umut, çağla
+hotel ,tour, ticket eksiklikleri doldurulucak.
+comparatorlar utilities altına alınıcak. (?)
