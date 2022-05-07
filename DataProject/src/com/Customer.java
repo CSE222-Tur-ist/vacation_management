@@ -20,8 +20,8 @@ public class Customer extends User {
     private Stack<Tour> favoriteTours = new Stack<Tour>();
     private static Scanner input = new Scanner(System.in);
 
-    public Customer(String username,String name, String surName, String ID, String password, User.userType role, String phoneNumber, String email) {
-        super(username,name, surName, ID, password,role,email);
+    public Customer(String username,String name, String surName, String password, User.userType role, String phoneNumber, String email) {
+        super(username,name, surName, password,role,email);
         this.phoneNumber = phoneNumber;
     }
 

@@ -4,8 +4,12 @@ public class TourManager extends User {
 
     public static Scanner input = new Scanner(System.in);
 
-    public TourManager(String username,String name, String surName, String ID, String password,User.userType role,String email) {
-        super(username,name, surName, ID, password,role,email);
+    public TourManager(String username,String name, String surName, String password,User.userType role,String email) {
+        super(username,name, surName, password,role,email);
+    }
+
+    public TourManager() {
+
     }
 
     //buradaki rota için farklı data stru. kullanıalbilir

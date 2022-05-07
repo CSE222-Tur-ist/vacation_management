@@ -6,8 +6,12 @@ public class HotelManager extends User {
 
     public static Scanner input = new Scanner(System.in);
 
-    public HotelManager(String username,String name, String surName, String ID, String password,User.userType role,String email) {
-        super(username,name, surName, ID, password,role,email);
+    public HotelManager(String username,String name, String surName, String password,User.userType role,String email) {
+        super(username,name, surName, password,role,email);
+    }
+
+    public HotelManager() {
+
     }
 
     public void addHotel(){ // send request to admin for add hotel

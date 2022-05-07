@@ -1,12 +1,20 @@
 package com;
 
+import com.datastructures.BinarySearchTree;
+
 import java.util.*;
 
 /**
  * Otel bilgileri
  */
 
-public class Hotel {
+public class Hotel implements Comparator<Hotel>{
+
+    public enum compareType {
+        NAME, PRICE, RATE
+    }
+    compareType type = compareType.NAME;
+
     private static final BinarySearchTree<Reservation> reservations = new BinarySearchTree<Reservation>();
     protected String name;
     protected String location;
@@ -39,6 +47,10 @@ public class Hotel {
         this.price = price;
         initializeCalendar();
 
+    }
+
+    public Hotel(Hotel.compareType type) {
+        this.type = type;
     }
 
     public Hotel() {
@@ -104,5 +116,47 @@ public class Hotel {
         aveRate = aveRate/rateSize;
         str.append("Rate : ").append(aveRate).append("\n");
         return str.toString();
+    }
+    // Overriding compare()method of Comparator
+    @Override
+    public int compare(Hotel hotel1, Hotel hotel2) {
+
+        // ---------------------------------------
+        final double ratePriority = 0.60;
+        final double NumOfPeoplePriority = 0.40;
+        final double result1 = (hotel1.aveRate * ratePriority) + (hotel1.rateSize * NumOfPeoplePriority);
+        final double result2 = (hotel2.aveRate * ratePriority) + (hotel2.rateSize * NumOfPeoplePriority);
+
+        if (type == compareType.RATE)
+            return Double.compare(result1, result2);
+
+        // ---------------------------------------
+        if (type == compareType.PRICE)
+            return Double.compare(hotel1.price, hotel2.price);
+        else
+            return hotel1.name.compareTo(hotel2.name);
+
+    }
+}
+class month {
+    protected int month;
+    protected day[] days = new day[28]; // her ayın 28 gününe randevu alınabilir, son günler temizlik vs
+
+    public month(){
+
+    }
+    public month(int k){
+        month = k;
+    }
+}
+class day {
+    protected int day;
+    protected boolean isFull;
+    public day(){
+
+    }
+    public day(int d,boolean f){
+        day = d;
+        isFull = f;
     }
 }

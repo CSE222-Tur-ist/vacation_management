@@ -1,5 +1,4 @@
-package com;
-import java.io.*;
+package com.datastructures;
 
 /** A class to represent a binary search tree.
  *  @author Koffman and Wolfgang
