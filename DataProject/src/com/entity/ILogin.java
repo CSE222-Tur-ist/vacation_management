@@ -1,4 +1,4 @@
-package com.users;
+package com.entity;
 
 public interface ILogin {
 

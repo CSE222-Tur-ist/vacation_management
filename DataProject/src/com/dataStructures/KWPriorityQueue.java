@@ -1,48 +1,58 @@
-package com;
+package com.dataStructures;
 
-import java.util.*;
+import java.util.AbstractQueue;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Queue;
 
-/** The KWPriorityQueue implements the Queue interface
- *   by building a heap in an ArrayList. The heap is structured
- *   so that the "smallest" item is at the top.
- *   @author Ali Kaya
+/**
+ * The KWPriorityQueue implements the Queue interface
+ * by building a heap in an ArrayList. The heap is structured
+ * so that the "smallest" item is at the top.
+ * 
+ * @author Ali Kaya
  */
 
-public class KWPriorityQueue <E> extends AbstractQueue <E> implements Queue <E> {
+public class KWPriorityQueue<E> extends AbstractQueue<E> implements Queue<E> {
 
     // Data Fields
     /** The ArrayList to hold the data. */
-    private ArrayList <E> theData;
+    private ArrayList<E> theData;
 
     /** An optional reference to a Comparator object. */
-    Comparator <E> comparator = null;
+    Comparator<E> comparator = null;
 
     // Methods
     // Constructor
     public KWPriorityQueue() {
-        theData = new ArrayList <E> ();
+        theData = new ArrayList<E>();
     }
 
-    /** Creates a heap-based priority queue with the specified initial
-     capacity that orders its elements according to the specified
-     comparator.
-     @param cap The initial capacity for this priority queue
-     @param comp The comparator used to order this priority queue
-     @throws IllegalArgumentException if cap is less than 1
+    /**
+     * Creates a heap-based priority queue with the specified initial
+     * capacity that orders its elements according to the specified
+     * comparator.
+     * 
+     * @param cap  The initial capacity for this priority queue
+     * @param comp The comparator used to order this priority queue
+     * @throws IllegalArgumentException if cap is less than 1
      */
-    public KWPriorityQueue(int cap, Comparator <E> comp) {
+    public KWPriorityQueue(int cap, Comparator<E> comp) {
         if (cap < 1)
             throw new IllegalArgumentException();
-        theData = new ArrayList <E> (cap + 1);
+        theData = new ArrayList<E>(cap + 1);
         comparator = comp;
     }
 
-    /** Insert an item into the priority queue.
-     pre: The ArrayList theData is in heap order.
-     post: The item is in the priority queue and
-     theData is in heap order.
-     @param item The item to be inserted
-     @throws NullPointerException if the item to be inserted is null.
+    /**
+     * Insert an item into the priority queue.
+     * pre: The ArrayList theData is in heap order.
+     * post: The item is in the priority queue and
+     * theData is in heap order.
+     * 
+     * @param item The item to be inserted
+     * @throws NullPointerException if the item to be inserted is null.
      */
     public boolean offer(E item) {
         // Add the item to the heap.
@@ -59,10 +69,12 @@ public class KWPriorityQueue <E> extends AbstractQueue <E> implements Queue <E> 
         return true;
     }
 
-    /** Remove an item from the priority queue
-     pre: The ArrayList theData is in heap order.
-     post: Removed smallest item, theData is in heap order.
-     @return The item with the smallest priority value or null if empty.
+    /**
+     * Remove an item from the priority queue
+     * pre: The ArrayList theData is in heap order.
+     * post: Removed smallest item, theData is in heap order.
+     * 
+     * @return The item with the smallest priority value or null if empty.
      */
     public E poll() {
         if (isEmpty()) {
@@ -95,44 +107,44 @@ public class KWPriorityQueue <E> extends AbstractQueue <E> implements Queue <E> 
             if (compare(theData.get(parent), theData.get(minChild)) > 0) {
                 swap(parent, minChild);
                 parent = minChild;
-            }
-            else { // Heap property is restored.
+            } else { // Heap property is restored.
                 break;
             }
         }
         return result;
     }
 
-    /** Compare two items using either a Comparator object�s compare method
-     or their natural ordering using method compareTo.
-     pre: If comparator is null, left and right implement Comparable<E>.
-     @param left One item
-     @param right The other item
-     @return Negative int if left less than right,
-     0 if left equals right,
-     positive int if left > right
-     @throws ClassCastException if items are not Comparable
+    /**
+     * Compare two items using either a Comparator object�s compare method
+     * or their natural ordering using method compareTo.
+     * pre: If comparator is null, left and right implement Comparable<E>.
+     * 
+     * @param left  One item
+     * @param right The other item
+     * @return Negative int if left less than right,
+     *         0 if left equals right,
+     *         positive int if left > right
+     * @throws ClassCastException if items are not Comparable
      */
     private int compare(E left, E right) {
         if (comparator != null) { // A Comparator is defined.
             return comparator.compare(left, right);
-        }
-        else { // Use left's compareTo method.
-            return ( (Comparable <E> ) left).compareTo(right);
+        } else { // Use left's compareTo method.
+            return ((Comparable<E>) left).compareTo(right);
         }
     }
 
     public void swap(int a, int b) {
         E temp = theData.get(a);
-        theData.set(a , theData.get(b));
-        theData.set(b , temp);
+        theData.set(a, theData.get(b));
+        theData.set(b, temp);
     }
 
     public int size() {
         return theData.size();
     }
 
-    public Iterator < E > iterator() {
+    public Iterator<E> iterator() {
         return theData.listIterator();
     }
 
@@ -143,4 +155,3 @@ public class KWPriorityQueue <E> extends AbstractQueue <E> implements Queue <E> 
         return theData.get(0);
     }
 }
-

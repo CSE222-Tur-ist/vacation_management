@@ -1,4 +1,4 @@
-package com.users;
+package com.entity;
 
 import java.util.UUID;
 
@@ -8,12 +8,11 @@ public abstract class User extends Utilities implements IUser {
         ADMIN, CUSTOMER, HOTEL_MANAGER, TOUR_MANAGER
     }
 
+    private final String ID;
     private String username;
     private String name;
     private String surName;
-    private final String ID;
     private String password;
-
     private userType role;
     private String email;
 
@@ -37,13 +36,29 @@ public abstract class User extends Utilities implements IUser {
     }
 
     @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
     public String getName() {
         return name;
     }
 
     @Override
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
     public String getSurName() {
         return surName;
+    }
+
+    @Override
+    public void setSurName(String surName) {
+        this.surName = surName;
     }
 
     @Override
@@ -58,34 +73,13 @@ public abstract class User extends Utilities implements IUser {
     }
 
     @Override
-    public userType getRole() {
-        return role;
-    }
-
-    @Override
-    public String getEmail() {
-        return email;
-    }
-
-    @Override
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Override
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public void setSurName(String surName) {
-        this.surName = surName;
-    }
-
-    @Override
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public userType getRole() {
+        return role;
     }
 
     @Override
@@ -94,8 +88,14 @@ public abstract class User extends Utilities implements IUser {
     }
 
     @Override
+    public String getEmail() {
+        return email;
+    }
+
+    @Override
     public void setEmail(String email) {
         this.email = email;
     }
+
 
 }

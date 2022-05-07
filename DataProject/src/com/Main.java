@@ -1,14 +1,18 @@
 package com;
 
+import com.entity.Customer;
+import com.entity.HotelManager;
+import com.entity.TourManager;
+import com.entity.User;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
+    public static Scanner input = new Scanner(System.in);
     // Keeps users
     static ArrayList<User> users = new ArrayList<>();
-
-    public static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
         int menu;
@@ -68,7 +72,7 @@ public class Main {
 
     /***
      * choose who you are, then input your information.
-     * 
+     *
      * @param email_username
      * @param password
      * @return

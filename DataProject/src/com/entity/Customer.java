@@ -1,9 +1,4 @@
-package com.users;
-
-import com.entity.Hotel;
-import com.entity.Reservation;
-import com.entity.Ticket;
-import com.entity.Tour;
+package com.entity;
 
 import java.util.Scanner;
 import java.util.Stack;
@@ -15,19 +10,15 @@ public class Customer extends User {
     // private String password; bu bilgi User interfaceinde var
     // private String email; bu bilgi User interfaceinde var
 
-    private String phoneNumber;
-
-    private Stack<Reservation> reservations = new Stack<>();
-
-    private Stack<Ticket> tickets = new Stack<>();
-
-    private Stack<Hotel> favoriteHotels = new Stack<>();
-
-    private Stack<Tour> favoriteTours = new Stack<>();
     public static Scanner input = new Scanner(System.in);
+    private String phoneNumber;
+    private Stack<Reservation> reservations = new Stack<>();
+    private Stack<Ticket> tickets = new Stack<>();
+    private Stack<Hotel> favoriteHotels = new Stack<>();
+    private Stack<Tour> favoriteTours = new Stack<>();
 
     public Customer(String username, String name, String surName, String password, User.userType role,
-            String phoneNumber, String email) {
+                    String phoneNumber, String email) {
         super(username, name, surName, password, role, email);
         this.phoneNumber = phoneNumber;
     }

@@ -1,0 +1,35 @@
+ortak data tiplerini abstract classta tutup diğer kullanıcı tiplerinde extend etmek
+view favorites fonksiyonu customer için eklendi.
+view tickets fonksiyonu customer için eklendi.
+
+customer-contact fonksiyonu gitti...
+customer -suggestion & request gitti..
+
+tour manager ticketların geldi/gelmedi statüsünü değiştirebilir, geldi işaretlenen ticketların sahipleri
+turlara yorum ve puan bırakabilir.
+
+
+hotel manager ve tour manager da customer gibi kayıt olabiliyor. Adminden izin almalı ?
+ekleme yaparken adminin onay vermesi lazım ama silme yaparken gerek yok?
+
+tarih uygunluk kontrolü
+aynı tur ismine sahip başka tur eklenmemeli -> bilet alırken sıkıntı çıkar
+
+
+5 May 22 -- updates
+- admin classının methodları?
+
+Data Structures and their usages:
+- priority queue: customer içinde
+- stack: favourite tours, favorite hotels, reservations in customer
+- arraylist: utilities kısmında, database olarak.
+- bst: reservations in hotel class.
+    - bst implementation - done.
+
+
+CUSTOMER: ali, bensu
+TOUR MANAGER: ayşegül, zeynep
+HOTEL MANAGER: ömer, ayşe elif
+ADMIN: umut, çağla
+hotel ,tour, ticket eksiklikleri doldurulucak.
+comparatorlar utilities altına alınıcak. (?)

@@ -1,4 +1,4 @@
-package com;
+package com.dataStructures;
 /** Interface to define a search tree
  *  @author Koffman and Wolfgang
  * */

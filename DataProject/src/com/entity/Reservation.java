@@ -1,7 +1,5 @@
-package com;
+package com.entity;
 
-
-import java.util.*;
 
 /**
  * kullanıcı için otel rezervasyon bilgileri

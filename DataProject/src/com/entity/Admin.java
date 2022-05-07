@@ -1,4 +1,4 @@
-package com.users;
+package com.entity;
 
 import java.util.Scanner;
 
@@ -14,29 +14,6 @@ public class Admin extends User {
         // TODO Auto-generated constructor stub
     }
 
-    /**
-     * USED FOR PRINTING IN EFFICIENT WAY
-     */
-    static void print(Object... o) {
-        if (o.length == 0) {
-            System.out.println();
-        } else {
-            for (Object object : o) {
-                System.out.println(object);
-            }
-        }
-    }
-
-    static void printLine(Object... o) {
-        if (o.length == 0) {
-            System.out.println();
-        } else {
-            for (Object object : o) {
-                print(object + " ");
-            }
-        }
-        System.out.println();
-    }
 
     // manage tour managers
     public void addTourManager() {
@@ -67,6 +44,10 @@ public class Admin extends User {
         print("Email : ");
         String email = input.nextLine();
         TourManager tourManager = new TourManager(username, name, surName, password, userType.TOUR_MANAGER, email);
+        tourManagers.add(tourManager);
+    }
+
+    public void addTourManager(TourManager tourManager) {
         tourManagers.add(tourManager);
     }
 
@@ -132,6 +113,10 @@ public class Admin extends User {
 
     }
 
+    public void addHotelManager(HotelManager hotelManager) {
+        hotelManagers.add(hotelManager);
+    }
+
     public boolean removeHotelManager(String username) {
         for (HotelManager hotelManager : hotelManagers) {
             if (hotelManager.getUsername().equals(username)) {
@@ -183,8 +168,6 @@ public class Admin extends User {
         adminTourManager.deleteTour();
     }
 
-    // -----------------------------------------------------
-
     public void updateTourInformation() {
         adminTourManager.updateTourInformation();
     }
@@ -211,6 +194,42 @@ public class Admin extends User {
         }
         System.err.println("No tour manager with this user name.");
         return manager;
+    }
+
+
+    public void getAllHotelManagers() {
+        hotelManagers.forEach(System.out::println);
+    }
+
+    public void getAllTourManagers() {
+        tourManagers.forEach(System.out::println);
+    }
+
+
+    // -----------------------------------------------------
+
+    /**
+     * USED FOR PRINTING IN EFFICIENT WAY
+     */
+    static void print(Object... o) {
+        if (o.length == 0) {
+            System.out.println();
+        } else {
+            for (Object object : o) {
+                System.out.println(object);
+            }
+        }
+    }
+
+    static void printLine(Object... o) {
+        if (o.length == 0) {
+            System.out.println();
+        } else {
+            for (Object object : o) {
+                print(object + " ");
+            }
+        }
+        System.out.println();
     }
 
     // -----------------------------------------------------

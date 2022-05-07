@@ -1,5 +1,4 @@
-package com;
-import java.io.*;
+package com.dataStructures;
 
 /** A class to represent a binary search tree.
  *  @author Koffman and Wolfgang
@@ -8,7 +7,7 @@ import java.io.*;
 public class BinarySearchTree < E
     extends Comparable < E >>
     extends BinaryTree < E >
-    implements SearchTree < E > {
+    implements SearchTree< E > {
   // Data Fields
   /** Return value from the public add method. */
   protected boolean addReturn;

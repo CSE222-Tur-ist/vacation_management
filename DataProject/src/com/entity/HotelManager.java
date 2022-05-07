@@ -1,6 +1,4 @@
-package com.users;
-
-import com.entity.Hotel;
+package com.entity;
 
 import java.util.Scanner;
 
@@ -9,7 +7,7 @@ public class HotelManager extends User {
     public static Scanner input = new Scanner(System.in);
 
     public HotelManager(String username, String name, String surName, String password, User.userType role,
-            String email) {
+                        String email) {
         super(username, name, surName, password, role, email);
     }
 
@@ -31,7 +29,8 @@ public class HotelManager extends User {
         System.out.print("Price for One Night and One Person : ");
         newhotel.price = input.nextDouble();
 
-        hotelrequest.add(newhotel); // new hotel request to admin
+        hotels.add(newhotel);
+//        hotelrequest.add(newhotel); // new hotel request to admin
     }
 
     public void updateHotelInformation() {

@@ -1,4 +1,4 @@
-package com;
+package com.entity;
 
 public class Ticket {
     // TODO: TOUR , ALAN KISI ADI, isCanceled()

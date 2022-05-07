@@ -1,4 +1,4 @@
-package com;
+package com.dataStructures;
 import java.io.*;
 
 /** Class for a binary tree that stores type E objects.
