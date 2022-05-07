@@ -1,4 +1,6 @@
-package com;
+package com.users;
+
+import com.entity.Tour;
 
 import java.util.Scanner;
 

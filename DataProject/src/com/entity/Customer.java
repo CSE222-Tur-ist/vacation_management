@@ -1,4 +1,9 @@
-package com;
+package com.users;
+
+import com.entity.Hotel;
+import com.entity.Reservation;
+import com.entity.Ticket;
+import com.entity.Tour;
 
 import java.util.Scanner;
 import java.util.Stack;

@@ -1,4 +1,6 @@
-package com;
+package com.users;
+
+import com.entity.Hotel;
 
 import java.util.Scanner;
 

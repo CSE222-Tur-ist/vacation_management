@@ -1,5 +1,7 @@
 package com;
 
+import com.dataStructures.BinarySearchTree;
+
 import java.util.*;
 
 /**
