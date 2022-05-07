@@ -33,7 +33,7 @@ public abstract class Utilities {
             default: System.out.println("Your choice is not correct !"); break;
         }
     }
-    private void listTours(){
+    protected static void listTours(){
         int i=1;
         for(Tour nextTour : tours){
             System.out.println(i + ".  "+ nextTour);
@@ -92,7 +92,7 @@ public abstract class Utilities {
             default: System.out.println("Your choice is not correct !"); break;
         }
     }
-    private void listHotels(){
+    protected static void listHotels(){
         int i=1;
         for(Hotel nextHotel : hotels){
             System.out.println(i + ".  "+ nextHotel);
