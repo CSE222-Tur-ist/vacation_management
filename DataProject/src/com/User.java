@@ -1,9 +1,13 @@
 package com;
 
+import java.util.UUID;
 
-public abstract class User extends Utilities implements IUser{
+public abstract class User extends Utilities implements IUser {
 
-    public enum userType {ADMIN, CUSTOMER, HOTEL_MANAGER, TOUR_MANAGER}
+    public enum userType {
+        ADMIN, CUSTOMER, HOTEL_MANAGER, TOUR_MANAGER
+    }
+
     private String username;
     private String name;
     private String surName;
@@ -13,14 +17,18 @@ public abstract class User extends Utilities implements IUser{
     private userType role;
     private String email;
 
-    public User(String username,String name, String surName, String ID, String password,userType role,String email) {
+    public User(String username, String name, String surName, String password, userType role, String email) {
         this.username = username;
         this.name = name;
         this.surName = surName;
-        this.ID = ID;
+        this.ID = UUID.randomUUID().toString();
         this.password = password;
         this.role = role;
         this.email = email;
+    }
+
+    public User() {
+        this.ID = UUID.randomUUID().toString();
     }
 
     @Override
@@ -40,8 +48,9 @@ public abstract class User extends Utilities implements IUser{
 
     @Override
 
-    public String getID() { return ID; }
-
+    public String getID() {
+        return ID;
+    }
 
     @Override
     public String getPassword() {
@@ -49,10 +58,14 @@ public abstract class User extends Utilities implements IUser{
     }
 
     @Override
-    public userType getRole() { return role; }
+    public userType getRole() {
+        return role;
+    }
 
     @Override
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
     @Override
     public void setUsername(String username) {
@@ -86,4 +99,3 @@ public abstract class User extends Utilities implements IUser{
     }
 
 }
-

@@ -1,12 +1,14 @@
 package com;
-import java.util.*;
+
+import java.util.Scanner;
+import java.util.Stack;
 
 public class Customer extends User {
     // private String name;
     // private String surname;
-    //private String userName;  bu bilgi User abstract classında var
-    //private String password; bu bilgi User interfaceinde var
-    //private String email; bu bilgi User interfaceinde var
+    // private String userName; bu bilgi User abstract classında var
+    // private String password; bu bilgi User interfaceinde var
+    // private String email; bu bilgi User interfaceinde var
 
     private String phoneNumber;
 
@@ -16,35 +18,38 @@ public class Customer extends User {
 
     private Stack<Hotel> favoriteHotels = new Stack<>();
 
-
     private Stack<Tour> favoriteTours = new Stack<>();
     public static Scanner input = new Scanner(System.in);
 
-    public Customer(String username,String name, String surName, String ID, String password, User.userType role, String phoneNumber, String email) {
-        super(username,name, surName, ID, password,role,email);
+    public Customer(String username, String name, String surName, String password, User.userType role,
+            String phoneNumber, String email) {
+        super(username, name, surName, password, role, email);
         this.phoneNumber = phoneNumber;
     }
 
     public void buyTicketForTour() {
         String tourName;
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        if (input.hasNextLine())
+            input.nextLine(); // clear buffer
         System.out.print("Enter tour name for buy a Ticket : ");
         tourName = input.nextLine();
 
-        for(Tour ticketTour : tours) {
-            if (ticketTour.getClass().getName().equals(tourName)) {
-                if(buyTicketForTourHelper(ticketTour)) System.out.println("\nTicket Bought Succesfully.");
-                else System.out.println("\nNo Tickets Left !");
+        for (Tour ticketTour : tours) {
+            if (ticketTour.name.equals(tourName)) {
+                if (buyTicketForTourHelper(ticketTour))
+                    System.out.println("\nTicket Bought Succesfully.");
+                else
+                    System.out.println("\nNo Tickets Left !");
             }
         }
     }
 
     // bilet almak için başka mekanizma eklenebebilir
     private boolean buyTicketForTourHelper(Tour chosenTour) {
-        if(chosenTour.numberofTickets!=0){
+        if (chosenTour.numberofTickets != 0) {
             return true;
-        }
-        else return false;
+        } else
+            return false;
 
     }
 
@@ -127,4 +132,3 @@ public class Customer extends User {
     // public void aboutUs(){}
     // public void viewFAQ(){}
 }
-

@@ -1,18 +1,23 @@
 package com;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class HotelManager extends User {
 
     public static Scanner input = new Scanner(System.in);
 
-    public HotelManager(String username,String name, String surName, String ID, String password,User.userType role,String email) {
-        super(username,name, surName, ID, password,role,email);
+    public HotelManager(String username, String name, String surName, String password, User.userType role,
+            String email) {
+        super(username, name, surName, password, role, email);
     }
 
-    public void addHotel(){ // send request to admin for add hotel
+    public HotelManager() {
+    }
+
+    public void addHotel() { // send request to admin for add hotel
         Hotel newhotel = new Hotel();
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        if (input.hasNextLine())
+            input.nextLine(); // clear buffer
         System.out.print("Name of Hotel : ");
         newhotel.name = input.nextLine();
         System.out.print("Location of Hotel : ");
@@ -27,20 +32,25 @@ public class HotelManager extends User {
         hotelrequest.add(newhotel); // new hotel request to admin
     }
 
-    public void updateHotelInformation(){
+    public void updateHotelInformation() {
         String hotelName;
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        if (input.hasNextLine())
+            input.nextLine(); // clear buffer
         System.out.print("Name of Hotel for Updating : ");
         hotelName = input.nextLine();
 
-        if(updateHotelInformation(hotelName)) System.out.println("\nUpdated Succesfully.");
-        else System.out.println("\nUpdate is unsuccesfull.");
+        if (updateHotelInformation(hotelName))
+            System.out.println("\nUpdated Succesfully.");
+        else
+            System.out.println("\nUpdate is unsuccesfull.");
     }
-    private boolean updateHotelInformation(String hotelName){
+
+    private boolean updateHotelInformation(String hotelName) {
         int select;
-        for(Hotel updateHotel : hotels){
-            if(updateHotel.getClass().getName().equals(hotelName)){
-                if(input.hasNextLine()) input.nextLine(); // clear buffer
+        for (Hotel updateHotel : hotels) {
+            if (updateHotel.name.equals(hotelName)) {
+                if (input.hasNextLine())
+                    input.nextLine(); // clear buffer
 
                 do {
                     System.out.println("      Update Menu      ");
@@ -67,31 +77,34 @@ public class HotelManager extends User {
                             System.out.println("Invalid input!");
                             break;
                     }
-                }while(select!=6);
+                } while (select != 6);
             }
         }
         return false;
     }
 
-    public void deleteHotel(){
+    public void deleteHotel() {
         String hotelName;
 
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        if (input.hasNextLine())
+            input.nextLine(); // clear buffer
         System.out.print("Name of Hotel : ");
         hotelName = input.nextLine();
 
-       if(deleteHotel(hotelName)) System.out.println("\nHotel removed Succesfully.");
-       else System.out.println("\nHotel remove is unsuccesfull.");
+        if (deleteHotel(hotelName))
+            System.out.println("\nHotel removed Succesfully.");
+        else
+            System.out.println("\nHotel remove is unsuccesfull.");
     }
-    private boolean deleteHotel(String hotelName){
-        for(Hotel deleteHotel : hotels) {
-            if(deleteHotel.getClass().getName().equals(hotelName)){
+
+    private boolean deleteHotel(String hotelName) {
+        for (Hotel deleteHotel : hotels) {
+            if (deleteHotel.name.equals(hotelName)) {
                 hotels.remove(deleteHotel);
                 return true;
             }
         }
         return false;
     }
-
 
 }
