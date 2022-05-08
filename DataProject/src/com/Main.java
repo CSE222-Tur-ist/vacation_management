@@ -14,7 +14,7 @@ public class Main {
         int menu;
         // turları bst ile tutma.
         do{
-            System.out.println("\n\n    TURISTICH    ");
+            System.out.println("\n\n    TUR.IST   ");
             System.out.println("------------------");
             System.out.println("0. Exit"); // sona gelicek şuanlık 0 kalsın
             System.out.println("1. Register");
@@ -38,7 +38,7 @@ public class Main {
 
         if(input.hasNextLine()) input.nextLine(); // clear buffer
 
-        System.out.print("Email or Username(name+username) : ");
+        System.out.print("Email or Username(name+surname) : ");
         email_username = input.nextLine();
         System.out.print("Password : ");
         password = input.nextLine();
@@ -49,10 +49,10 @@ public class Main {
 
             // buraya kim olarak giriş yapıldıysa o classın menusunu çagır (her classın kendi menusu olmalı)
             switch (loginAs){
-//                case ADMIN: ((Admin)users.get(userIndex))adminMenu(); break;
+                case ADMIN: ((Admin)users.get(userIndex)).adminMenu(); break;
                 case CUSTOMER: ((Customer)users.get(userIndex)).customerMenu(); break;
-//                case HOTEL_MANAGER: ((HotelManager)users.get(userIndex))hotelManagerMenu(); break;
-//                case TOUR_MANAGER: ((TourManager)users.get(userIndex))tourManagerMenu(); break;
+                //case HOTEL_MANAGER: ((HotelManager)users.get(userIndex))hotelManagerMenu(); break;
+//              case TOUR_MANAGER: ((TourManager)users.get(userXIndex))tourManagerMenu(); break;
             }
 
             return true;
