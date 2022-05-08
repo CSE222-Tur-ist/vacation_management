@@ -6,8 +6,12 @@ public class HotelManager extends User {
 
     public static Scanner input = new Scanner(System.in);
 
-    public HotelManager(String username,String name, String surName, String ID, String password,User.userType role,String email) {
-        super(username,name, surName, ID, password,role,email);
+    public HotelManager(String username,String name, String surName, String password,User.userType role,String email) {
+        super(username,name, surName, password,role,email);
+    }
+
+    public HotelManager() {
+
     }
 
     public void addHotel(){ // send request to admin for add hotel
@@ -24,7 +28,10 @@ public class HotelManager extends User {
         System.out.print("Price for One Night and One Person : ");
         newhotel.price = input.nextDouble();
 
-        hotelrequest.add(newhotel); // new hotel request to admin
+        for(Hotel nextHotel : hotels){
+            if(nextHotel.name.equals(newhotel.name)) System.out.print("This name already exists !");
+            else hotels.add(newhotel);
+        }
     }
 
     public void updateHotelInformation(){
@@ -39,7 +46,7 @@ public class HotelManager extends User {
     private boolean updateHotelInformation(String hotelName){
         int select;
         for(Hotel updateHotel : hotels){
-            if(updateHotel.getClass().getName().equals(hotelName)){
+            if(updateHotel.name.equals(hotelName)){
                 if(input.hasNextLine()) input.nextLine(); // clear buffer
 
                 do {
@@ -80,12 +87,12 @@ public class HotelManager extends User {
         System.out.print("Name of Hotel : ");
         hotelName = input.nextLine();
 
-       if(deleteHotel(hotelName)) System.out.println("\nHotel removed Succesfully.");
-       else System.out.println("\nHotel remove is unsuccesfull.");
+        if(deleteHotel(hotelName)) System.out.println("\nHotel removed Succesfully.");
+        else System.out.println("\nHotel remove is unsuccesfull.");
     }
     private boolean deleteHotel(String hotelName){
         for(Hotel deleteHotel : hotels) {
-            if(deleteHotel.getClass().getName().equals(hotelName)){
+            if(deleteHotel.name.equals(hotelName)){
                 hotels.remove(deleteHotel);
                 return true;
             }

@@ -1,5 +1,6 @@
 package com;
 
+import java.util.UUID;
 
 public abstract class User extends Utilities implements IUser{
 
@@ -13,14 +14,19 @@ public abstract class User extends Utilities implements IUser{
     private userType role;
     private String email;
 
-    public User(String username,String name, String surName, String ID, String password,userType role,String email) {
+    public User(String username, String name, String surName, String password, userType role, String email) {
+
         this.username = username;
         this.name = name;
         this.surName = surName;
-        this.ID = ID;
+        this.ID = UUID.randomUUID().toString();
         this.password = password;
         this.role = role;
         this.email = email;
+    }
+
+    public User() {
+        this.ID = UUID.randomUUID().toString();
     }
 
     @Override

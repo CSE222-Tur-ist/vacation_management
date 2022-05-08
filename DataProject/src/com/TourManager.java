@@ -4,8 +4,12 @@ public class TourManager extends User {
 
     public static Scanner input = new Scanner(System.in);
 
-    public TourManager(String username,String name, String surName, String ID, String password,User.userType role,String email) {
-        super(username,name, surName, ID, password,role,email);
+    public TourManager(String username,String name, String surName, String password,User.userType role,String email) {
+        super(username,name, surName, password,role,email);
+    }
+
+    public TourManager() {
+
     }
 
     //buradaki rota için farklı data stru. kullanıalbilir
@@ -28,7 +32,11 @@ public class TourManager extends User {
         System.out.print("Price of Ticket : ");
         newtour.price = input.nextDouble();
 
-        tourrequest.add(newtour); // new tour request to admin
+        for(Tour nextTour : tours){
+            if(nextTour.name.equals(newtour.name)) System.out.print("This name already exists !");
+            else tours.add(newtour);
+        }
+
     }
 
     public void updateTourInformation(){
@@ -45,7 +53,7 @@ public class TourManager extends User {
         int select;
         String route;
         for(Tour updateTour : tours){
-            if(updateTour.getClass().getName().equals(tourName)){
+            if(updateTour.name.equals(tourName)){
                 if(input.hasNextLine()) input.nextLine(); // clear buffer
 
                 do {
@@ -100,7 +108,7 @@ public class TourManager extends User {
     }
     private boolean deleteTour(String tourName){
         for(Tour deleteTour : tours) {
-            if(deleteTour.getClass().getName().equals(tourName)){
+            if(deleteTour.name.equals(tourName)){
                 hotels.remove(deleteTour);
                 return true;
             }
