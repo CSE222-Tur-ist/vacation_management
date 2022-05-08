@@ -100,5 +100,32 @@ public class HotelManager extends User {
         return false;
     }
 
+    protected void hotelManagerMenu(){
+        
+        int option;
+        System.out.println("------------------");
+        System.out.println("Welcome to the Hotel Manager Menu..");
+
+        do{
+            System.out.println("1-> Add a Hotel");
+            System.out.println("2-> Update Hotel Information");
+            System.out.println("3-> Delete a Hotel");
+
+            System.out.println("4-> Exit");
+            System.out.print("Enter your choice: ");
+            option= input.nextInt();
+
+            switch (option){
+                case 1: System.out.println("\n-----------------------"); addHotel(); break;
+                case 2: System.out.println("\n-----------------------"); updateHotelInformation(); break;
+                case 3: System.out.println("\n-----------------------"); deleteHotel(); break;
+                case 4: System.out.println("\nExiting.."); break;
+
+                default: System.out.println("Input is not valid! Try again.."); break;
+            }
+        }while (option != 4);
+
+        input.close();
+    }
 
 }
