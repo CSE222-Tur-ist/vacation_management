@@ -205,7 +205,45 @@ public class Admin extends User {
         tourManagers.forEach(System.out::println);
     }
 
+    protected void adminMenu(){
+        //maindendeki login methodu buraya yonlendiriyor
+        int option;
+        System.out.println("------------------");
+        System.out.println("Welcome to the Admin Menu..");
 
+        do{
+            System.out.println("1-> Add Tour Manager to the system");
+            System.out.println("2-> Remove Tour Manager from the system");
+            System.out.println("3-> Update a Tour Manager in the system");
+            System.out.println("4-> Add Hotel Manager to the system");
+            System.out.println("5-> Remove Hotel Manager from the system");
+            System.out.println("6-> Update a Hotel Manager in the system");
+
+            System.out.println("16-> Exit");
+            System.out.print("Enter your choice: ");
+            option= input.nextInt();
+
+            switch (option){
+                case 1: System.out.println("\n-----------------------"); addTourManager(); break;
+                case 2:
+                    System.out.println("Username of tour manager: ");
+                    String tManagerName = input.nextLine();
+                    System.out.println("\n-----------------------"); removeTourManager(tManagerName);
+                    break;
+                case 3:
+                    System.out.println("Username of tour manager: ");
+                    tManagerName = input.nextLine();
+                    System.out.println("\n-----------------------"); //updateTourManager();
+                    break;
+
+                case 16: System.out.println("\nExiting.."); break;
+
+                default: System.out.println("Input is not valid! Try again.."); break;
+            }
+        }while (option != 16);
+
+        input.close();
+    }
     // -----------------------------------------------------
 
     /**

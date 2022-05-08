@@ -1,4 +1,5 @@
 package com;
+
 import java.util.*;
 
 public class Main {
@@ -14,13 +15,16 @@ public class Main {
         int menu;
         // turları bst ile tutma.
         do{
+
             System.out.println("\n\n    TURISTICH    ");
+
             System.out.println("------------------");
             System.out.println("0. Exit"); // sona gelicek şuanlık 0 kalsın
             System.out.println("1. Register");
             System.out.println("2. Login");
             System.out.print("Enter : ");
             menu = input.nextInt();
+
 
             switch (menu){
                 case 1: System.out.println("\n-----------------------"); register(); break;
@@ -29,30 +33,40 @@ public class Main {
             }
         }while(menu!=0); // exit sayısı değişecek
 
+
         input.close();
     }
 
 
     private static boolean login() {
-        String email_username,password;
+        String email_username, password;
 
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        if (input.hasNextLine())
+            input.nextLine(); // clear buffer
 
-        System.out.print("Email or Username(name+username) : ");
+        System.out.print("Email or Username(name+surname) : ");
+
         email_username = input.nextLine();
         System.out.print("Password : ");
         password = input.nextLine();
 
-        User.userType loginAs = login(email_username,password);
-        if(loginAs != null) {
-            System.out.println("\nLogin as "+loginAs+" is succesfull.");
 
-            // buraya kim olarak giriş yapıldıysa o classın menusunu çagır (her classın kendi menusu olmalı)
-            switch (loginAs){
-//                case ADMIN: ((Admin)users.get(userIndex))adminMenu(); break;
-                case CUSTOMER: ((Customer)users.get(userIndex)).customerMenu(); break;
-//                case HOTEL_MANAGER: ((HotelManager)users.get(userIndex))hotelManagerMenu(); break;
-//                case TOUR_MANAGER: ((TourManager)users.get(userIndex))tourManagerMenu(); break;
+        User.userType loginAs = login(email_username, password);
+        if (loginAs != null) {
+            System.out.println("\nLogin as " + loginAs + " is succesfull.");
+
+            // buraya kim olarak giriş yapıldıysa o classın menusunu çagır (her classın
+            // kendi menusu olmalı)
+            switch (loginAs) {
+                // case ADMIN: ((Admin)users.get(userIndex))adminMenu(); break;
+                case CUSTOMER:
+                    ((Customer) users.get(userIndex)).customerMenu();
+                    break;
+                // case HOTEL_MANAGER: ((HotelManager)users.get(userIndex))hotelManagerMenu();
+                // break;
+                case TOUR_MANAGER:
+                    ((TourManager) users.get(userIndex)).tourManagerMenu();
+                    break;
             }
 
             return true;
@@ -62,24 +76,29 @@ public class Main {
             return false;
         }
     }
+
     /***
      * choose who you are, then input your information.
+
      * @param email_username
      * @param password
      * @return
      */
     private static User.userType login(String email_username, String password) {
         int counter = -1;
+
         for(User loginUser : users){
             counter++;
             if(loginUser.getEmail().equals(email_username)){
                 if(loginUser.getPassword().equals(password)){ // email and password paired correctly
+
                     userIndex = counter;
                     return loginUser.getRole(); // role of user to print menu of that role
                 }
             }
-            if(loginUser.getUsername().equals(email_username)){
-                if(loginUser.getPassword().equals(password)){ // email and password paired correctly
+
+            if (loginUser.getUsername().equals(email_username)) {
+                if (loginUser.getPassword().equals(password)) { // email and password paired correctly
                     userIndex = counter;
                     return loginUser.getRole(); // role of user to print menu of that role
                 }
@@ -90,6 +109,7 @@ public class Main {
 
     public static boolean register() {
         int choosenRole;
+
 
         if(input.hasNextLine()) input.nextLine(); // clear buffer
         System.out.println("Register as Customer");
@@ -110,11 +130,14 @@ public class Main {
     private static boolean registerCustomer(){
         String name,surName,ID,password,phoneNumber,email,username;
         if(input.hasNextLine()) input.nextLine(); // clear buffer
+
         System.out.print("Name : ");
         name = input.nextLine();
         System.out.print("Surname : ");
         surName = input.nextLine();
+
         username = name+surName; // username created automatically
+
         System.out.print("Password : ");
         password = input.nextLine();
         System.out.print("Phone Number : ");
@@ -122,12 +145,14 @@ public class Main {
         System.out.print("email : ");
         email = input.nextLine();
 
+
         if(email_inUse(email)){
             System.out.println("\nThis email is already taken ! Registration is unsuccesfull");
             return false;
         }
         else{
             users.add(new Customer(username,name,surName,password, User.userType.CUSTOMER,phoneNumber,email));
+
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -137,15 +162,19 @@ public class Main {
     private static boolean registerTourManager(){
         String name,surName,ID,password,email,username;
         if(input.hasNextLine()) input.nextLine(); // clear buffer
+
         System.out.print("Name : ");
         name = input.nextLine();
         System.out.print("Surname : ");
         surName = input.nextLine();
+
         username = name+surName; // username created automatically
+
         System.out.print("Password : ");
         password = input.nextLine();
         System.out.print("Email : ");
         email = input.nextLine();
+
 
         if(email_inUse(email)){
             System.out.println("\nThis email is already taken ! Registration is unsuccesfull");
@@ -153,6 +182,7 @@ public class Main {
         }
         else{
             users.add(new TourManager(username,name,surName,password, User.userType.TOUR_MANAGER,email));
+
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -163,11 +193,13 @@ public class Main {
     private static boolean registerHotelManager(){
         String name,surName,ID,password,email,username;
         if(input.hasNextLine()) input.nextLine(); // clear buffer
+
         System.out.print("Name : ");
         name = input.nextLine();
         System.out.print("Surname : ");
         surName = input.nextLine();
-        username = name+surName; // username created automatically
+
+        username = name + surName; // username created automatically
         System.out.print("Password : ");
         password = input.nextLine();
         System.out.print("Email : ");
@@ -179,15 +211,19 @@ public class Main {
         }
         else{
             users.add(new HotelManager(username,name,surName,password, User.userType.HOTEL_MANAGER,email));
+
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
     }
 
-    // if email is already in use, new account wont be created -> test caseslara eklenebilir
-    private static boolean email_inUse(String email){
-        for(User loginUser : users) {
-            if (loginUser.getEmail().equals(email)) return true;
+
+    // if email is already in use, new account wont be created -> test caseslara
+    // eklenebilir
+    private static boolean email_inUse(String email) {
+        for (User loginUser : users) {
+            if (loginUser.getEmail().equals(email))
+                return true;
         }
         return false;
     }
