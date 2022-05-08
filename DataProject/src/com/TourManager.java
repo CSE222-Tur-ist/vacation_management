@@ -129,7 +129,7 @@ public class TourManager extends User {
     private boolean deleteTour(String tourName) {
         for (Tour deleteTour : tours) {
             if (deleteTour.name.equals(tourName)) {
-                hotels.remove(deleteTour);
+                tours.remove(deleteTour);
                 return true;
             }
         }
