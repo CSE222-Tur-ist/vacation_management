@@ -2,10 +2,9 @@ package com;
 import java.util.*;
 
 public class Main {
-    //abc
+
     // Keeps users
     static ArrayList<User> users = new ArrayList<>();
-    static int userIndex = 0; //use in login method
 
     public static Scanner input = new Scanner(System.in);
 
@@ -48,12 +47,6 @@ public class Main {
             System.out.println("\nLogin as "+loginAs+" is succesfull.");
 
             // buraya kim olarak giriş yapıldıysa o classın menusunu çagır (her classın kendi menusu olmalı)
-            switch (loginAs){
-//                case ADMIN: ((Admin)users.get(userIndex))adminMenu(); break;
-                case CUSTOMER: ((Customer)users.get(userIndex)).customerMenu(); break;
-//                case HOTEL_MANAGER: ((HotelManager)users.get(userIndex))hotelManagerMenu(); break;
-//                case TOUR_MANAGER: ((TourManager)users.get(userIndex))tourManagerMenu(); break;
-            }
 
             return true;
         } // if username, email and password is paired correctly for a user on system.
@@ -69,18 +62,14 @@ public class Main {
      * @return
      */
     private static User.userType login(String email_username, String password) {
-        int counter = -1;
         for(User loginUser : users){
-            counter++;
             if(loginUser.getEmail().equals(email_username)){
                 if(loginUser.getPassword().equals(password)){ // email and password paired correctly
-                    userIndex = counter;
                     return loginUser.getRole(); // role of user to print menu of that role
                 }
             }
             if(loginUser.getUsername().equals(email_username)){
                 if(loginUser.getPassword().equals(password)){ // email and password paired correctly
-                    userIndex = counter;
                     return loginUser.getRole(); // role of user to print menu of that role
                 }
             }
@@ -115,6 +104,8 @@ public class Main {
         System.out.print("Surname : ");
         surName = input.nextLine();
         username = name+surName; // username created automatically
+        System.out.print("ID : ");
+        ID = input.nextLine();
         System.out.print("Password : ");
         password = input.nextLine();
         System.out.print("Phone Number : ");
@@ -127,7 +118,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new Customer(username,name,surName,password, User.userType.CUSTOMER,phoneNumber,email));
+            users.add(new Customer(username,name,surName,ID,password, User.userType.CUSTOMER,phoneNumber,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -142,6 +133,8 @@ public class Main {
         System.out.print("Surname : ");
         surName = input.nextLine();
         username = name+surName; // username created automatically
+        System.out.print("ID : ");
+        ID = input.nextLine();
         System.out.print("Password : ");
         password = input.nextLine();
         System.out.print("Email : ");
@@ -152,7 +145,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new TourManager(username,name,surName,password, User.userType.TOUR_MANAGER,email));
+            users.add(new TourManager(username,name,surName,ID,password, User.userType.TOUR_MANAGER,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
@@ -168,6 +161,8 @@ public class Main {
         System.out.print("Surname : ");
         surName = input.nextLine();
         username = name+surName; // username created automatically
+        System.out.print("ID : ");
+        ID = input.nextLine();
         System.out.print("Password : ");
         password = input.nextLine();
         System.out.print("Email : ");
@@ -178,7 +173,7 @@ public class Main {
             return false;
         }
         else{
-            users.add(new HotelManager(username,name,surName,password, User.userType.HOTEL_MANAGER,email));
+            users.add(new HotelManager(username,name,surName,ID,password, User.userType.HOTEL_MANAGER,email));
             System.out.println("\nRegistration is succesfull.");
             return true;
         }
