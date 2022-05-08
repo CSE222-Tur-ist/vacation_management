@@ -1,5 +1,7 @@
 package com;
 import java.util.*;
+import com.datastructures.*;
+
 
 public abstract class Utilities {
     public static Scanner input = new Scanner(System.in);
@@ -9,6 +11,8 @@ public abstract class Utilities {
 
     static ArrayList<Tour> tours = new ArrayList<>(); // tours confirmed by admin
     static ArrayList<Hotel> hotels = new ArrayList<>(); // hotels confirmed by admin
+
+    static BinarySearchTree<Location> locations = new BinarySearchTree<Location>(); // location names in alphabetical order, to be used in listing by location
 
     // for tours.
     public void searchTours() {

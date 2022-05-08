@@ -29,8 +29,12 @@ public class HotelManager extends User {
         newhotel.price = input.nextDouble();
 
         for(Hotel nextHotel : hotels){
-            if(nextHotel.name.equals(newhotel.name)) System.out.print("This name already exists !");
-            else hotels.add(newhotel);
+            if(nextHotel.name.equals(newhotel.name))
+                System.out.print("This name already exists !");
+            else {
+                hotels.add(newhotel);
+                addLocation(newhotel);
+            }
         }
     }
 
@@ -40,8 +44,8 @@ public class HotelManager extends User {
         System.out.print("Name of Hotel for Updating : ");
         hotelName = input.nextLine();
 
-        if(updateHotelInformation(hotelName)) System.out.println("\nUpdated Succesfully.");
-        else System.out.println("\nUpdate is unsuccesfull.");
+        if(updateHotelInformation(hotelName)) System.out.println("\nUpdated Successfully.");
+        else System.out.println("\nUpdate is unsuccessful.");
     }
     private boolean updateHotelInformation(String hotelName){
         int select;
@@ -52,23 +56,33 @@ public class HotelManager extends User {
                 do {
                     System.out.println("      Update Menu      ");
                     System.out.println("-----------------------");
-                    System.out.println("1. Features\n2. Price\n3. Number of Rooms\n4. Exit");
+                    System.out.println("1. Name\n2. Features\n3. Price\n4. Number of Rooms\n5. Exit");
                     System.out.print("Enter : ");
                     select = input.nextInt();
                     switch (select) {
                         case 1:
+                            if(input.hasNextLine()) input.nextLine(); // clear buffer
+                            System.out.print("Name of Hotel to be Updated: ");
+                            String newname = input.nextLine();
+                            for(Hotel nextHotel : hotels){
+                                if(nextHotel.name.equals(newname)) System.out.print("This name already exists !");
+                                else updateHotel.name = newname;
+                                break;
+                            }
+                        case 2:
+                            if(input.hasNextLine()) input.nextLine(); // clear buffer
                             System.out.print("Features of Hotel : ");
                             updateHotel.features = input.nextLine();
                             break;
-                        case 2:
+                        case 3:
                             System.out.print("Price for One Night and One Person : ");
                             updateHotel.price = input.nextDouble();
                             break;
-                        case 3:
+                        case 4:
                             System.out.print("Remaining Number of Rooms : ");
                             updateHotel.numberofRooms = input.nextInt();
                             break;
-                        case 4:
+                        case 5:
                             return true;
                         default:
                             System.out.println("Invalid input!");
@@ -83,16 +97,16 @@ public class HotelManager extends User {
     public void deleteHotel(){
         String hotelName;
 
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
-        System.out.print("Name of Hotel : ");
+        System.out.print("Name of Hotel to be Deleted: ");
         hotelName = input.nextLine();
 
-        if(deleteHotel(hotelName)) System.out.println("\nHotel removed Succesfully.");
-        else System.out.println("\nHotel remove is unsuccesfull.");
+        if(deleteHotel(hotelName)) System.out.println("\nHotel removed Successfully.");
+        else System.out.println("\nHotel remove is unsuccessful.");
     }
     private boolean deleteHotel(String hotelName){
         for(Hotel deleteHotel : hotels) {
             if(deleteHotel.name.equals(hotelName)){
+                removeLocation(deleteHotel);
                 hotels.remove(deleteHotel);
                 return true;
             }
@@ -100,46 +114,40 @@ public class HotelManager extends User {
         return false;
     }
 
-    private void viewAddedHotels() {
-        System.out.println("List of Added Hotels:");
-        for (Hotel nextHotel : hotels) {
-            System.out.println("Name of Tour : " + nextHotel.name);
-            System.out.println("Location : " + nextHotel.location);
-            System.out.println("Number of Rooms : " + nextHotel.numberofRooms);
-            System.out.println("Features : " + nextHotel.features);
-            System.out.println("Price : " + nextHotel.price);
-           
-            System.out.println("-----------------------------------------------------");
+    private void addLocation(Hotel newhotel) {
+        Location newlocation = new Location(newhotel.location); // create a location object with newhotel's location
+        Location l = locations.find(newlocation); // create location l to check if locationName exists in BST or not
+        if (l != null) // if locationName exists in BST
+            l.hotelsList.add(newhotel); // just add hotel name to hotelsList in Location object
+        else {
+            newlocation.hotelsList.add(newhotel); // otherwise create new node for location and then add the hotel to hotelsList
+            locations.add(newlocation);
         }
     }
 
-    protected void hotelManagerMenu(){
-        
-        int option;
-        System.out.println("------------------");
-        System.out.println("Welcome to the Hotel Manager Menu..");
-
-        do{
-            System.out.println("1-> Add a Hotel");
-            System.out.println("2-> Update Hotel Information");
-            System.out.println("3-> Delete a Hotel");
-
-            System.out.println("4-> Exit");
-            System.out.print("Enter your choice: ");
-            option= input.nextInt();
-
-            switch (option){
-                case 1: System.out.println("\n-----------------------"); addHotel(); break;
-                case 2: System.out.println("\n-----------------------"); updateHotelInformation(); break;
-                case 3: System.out.println("\n-----------------------"); deleteHotel(); break;
-                case 4: System.out.println("\nExiting.."); break;
-
-                default: System.out.println("Input is not valid! Try again.."); break;
-            }
-        }while (option != 4);
-        
-        //ssss
-        input.close();
+    private void removeLocation(Hotel deleteHotel) {
+        Location deleteLocation = locations.find(new Location(deleteHotel.location));
+        if (deleteLocation.hotelsList.size() == 1) // if there is only 1 hotel in the hotelsList remove the node
+            locations.remove(deleteLocation);
+        else
+            deleteLocation.hotelsList.remove(deleteHotel);
     }
+
+    public void findHotelbyLocation() {
+        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        System.out.print("FIND HOTEL BY LOCATION\nLocation of the Hotel : ");
+        String search = input.nextLine();
+        Location findLocation = locations.find(new Location(search));
+        if (findLocation != null) {
+            int i=1;
+            for(Hotel nextHotel : findLocation.hotelsList){
+                System.out.println(i + ".  " + nextHotel);
+                i++;
+            }
+            return;
+        }
+        System.out.println("Location could not found.");
+    }
+
 
 }
