@@ -100,6 +100,19 @@ public class HotelManager extends User {
         return false;
     }
 
+    private void viewAddedHotels() {
+        System.out.println("List of Added Hotels:");
+        for (Hotel nextHotel : hotels) {
+            System.out.println("Name of Tour : " + nextHotel.name);
+            System.out.println("Location : " + nextHotel.location);
+            System.out.println("Number of Rooms : " + nextHotel.numberofRooms);
+            System.out.println("Features : " + nextHotel.features);
+            System.out.println("Price : " + nextHotel.price);
+           
+            System.out.println("-----------------------------------------------------");
+        }
+    }
+
     protected void hotelManagerMenu(){
         
         int option;
