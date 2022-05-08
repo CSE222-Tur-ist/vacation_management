@@ -34,12 +34,17 @@ public class TourManager extends User {
         newtour.numberofTickets = input.nextInt();
         System.out.print("Price of Ticket : ");
         newtour.price = input.nextDouble();
-
+        boolean isFound = false;
         for (Tour nextTour : tours) {
-            if (nextTour.name.equals(newtour.name))
+            if (nextTour.name.equals(newtour.name)) {
+                isFound = true;
                 System.out.print("This name already exists !");
-            else
-                tours.add(newtour);
+                break;
+            }
+        }
+        if (!isFound) {
+            System.out.println("Tour is added successfully");
+            tours.add(newtour);
         }
 
     }
@@ -131,12 +136,33 @@ public class TourManager extends User {
         return false;
     }
 
+    private void viewAddedTours() {
+        System.out.println("List of added tours");
+        for (Tour nextTour : tours) {
+            System.out.println("Name of Tour : " + nextTour.name);
+            // System.out.println("Route of Tour : " + nextTour.route);
+            System.out.println("Start Date of Tour : " + nextTour.startDate);
+            System.out.println("End Date of Tour : " + nextTour.endDate);
+            System.out.println("Number of Tickets for Tour : " + nextTour.numberofTickets);
+            System.out.println("Price of Ticket : " + nextTour.price);
+            for (String nextRoute : nextTour.route) {
+                System.out.println(nextRoute);
+            }
+            System.out.println("-----------------------------------------------------");
+        }
+    }
+
     public void tourManagerMenu() {
         int select;
         do {
             System.out.println("      Tour Manager Menu      ");
             System.out.println("-----------------------");
-            System.out.println("1. Add Tour\n2. Update Tour Information\n3. Delete Tour\n4. Exit");
+            System.out.println("1. Add Tour");
+            System.out.println("2. Update Tour Information");
+            System.out.println("3. Delete Tour");
+            System.out.println("4. View Added Tours");
+            System.out.println("5. Exit");
+
             System.out.print("Enter : ");
             select = input.nextInt();
             switch (select) {
@@ -150,13 +176,15 @@ public class TourManager extends User {
                     deleteTour();
                     break;
                 case 4:
-                    return;
+                    viewAddedTours();
+                    break;
+                case 5:
+                    break;
                 default:
                     System.out.println("Your choice is not correct !");
                     break;
-
             }
-        } while (select != 4);
-
+        } while (select != 5);
     }
+
 }
