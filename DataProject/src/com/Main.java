@@ -13,8 +13,9 @@ public class Main {
     public static void main(String[] args) {
         int menu;
         // turları bst ile tutma.
-        do {
-            System.out.println("\n\n    TURISTICH    ");
+        do{
+            System.out.println("\n\n    TUR.IST   ");
+
             System.out.println("------------------");
             System.out.println("0. Exit"); // sona gelicek şuanlık 0 kalsın
             System.out.println("1. Register");
@@ -46,10 +47,11 @@ public class Main {
         if (input.hasNextLine())
             input.nextLine(); // clear buffer
 
-        System.out.print("Email or Username(name+username) : ");
+        System.out.print("Email or Username(name+surname) : ");
         email_username = input.nextLine();
         System.out.print("Password : ");
         password = input.nextLine();
+
 
         User.userType loginAs = login(email_username, password);
         if (loginAs != null) {
@@ -67,6 +69,7 @@ public class Main {
                 case TOUR_MANAGER:
                     ((TourManager) users.get(userIndex)).tourManagerMenu();
                     break;
+
             }
 
             return true;
