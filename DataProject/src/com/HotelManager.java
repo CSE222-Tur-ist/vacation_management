@@ -124,7 +124,8 @@ public class HotelManager extends User {
                 default: System.out.println("Input is not valid! Try again.."); break;
             }
         }while (option != 4);
-
+        
+        //ssss
         input.close();
     }
 
