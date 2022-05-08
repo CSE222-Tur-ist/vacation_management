@@ -26,6 +26,7 @@ public class Customer extends User {
     }
 
     private void buyTicketForTour() {
+        searchTours();
         String tourName;
         if(input.hasNextLine()) input.nextLine(); // clear buffer
         System.out.print("\nEnter tour name for buy a Ticket : ");
@@ -101,6 +102,7 @@ public class Customer extends User {
     }
 
     private void makeReservationForHotel(){
+        searchHotels();
         String hotelName;
         if(input.hasNextLine()) input.nextLine(); // clear buffer
         System.out.print("\nEnter hotel name to make reservation : ");
