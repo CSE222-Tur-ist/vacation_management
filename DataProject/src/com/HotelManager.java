@@ -30,7 +30,10 @@ public class HotelManager extends User {
 
         for(Hotel nextHotel : hotels){
             if(nextHotel.name.equals(newhotel.name)) System.out.print("This name already exists !");
-            else hotels.add(newhotel);
+            else {
+                hotels.add(newhotel);
+                addLocation(newhotel);
+            }
         }
     }
 
@@ -84,7 +87,7 @@ public class HotelManager extends User {
         String hotelName;
 
         if(input.hasNextLine()) input.nextLine(); // clear buffer
-        System.out.print("Name of Hotel : ");
+        System.out.print("Name of Hotel to be Deleted: ");
         hotelName = input.nextLine();
 
         if(deleteHotel(hotelName)) System.out.println("\nHotel removed Succesfully.");
@@ -93,6 +96,7 @@ public class HotelManager extends User {
     private boolean deleteHotel(String hotelName){
         for(Hotel deleteHotel : hotels) {
             if(deleteHotel.name.equals(hotelName)){
+                removeLocation(deleteHotel);
                 hotels.remove(deleteHotel);
                 return true;
             }
@@ -140,6 +144,41 @@ public class HotelManager extends User {
         
         //ssss
         input.close();
+    }
+
+    private void addLocation(Hotel newhotel) {
+        Location newlocation = new Location(newhotel.location); // create a location object with newhotel's location
+        Location l = locations.find(newlocation); // create location l to check if locationName exists in BST or not
+        if (l != null) // if locationName exists in BST
+            l.hotelsList.add(newhotel); // just add hotel name to hotelsList in Location object
+        else {
+            newlocation.hotelsList.add(newhotel); // otherwise create new node for location and then add the hotel to hotelsList
+            locations.add(newlocation);
+        }
+    }
+
+    private void removeLocation(Hotel deleteHotel) {
+        Location deleteLocation = locations.find(new Location(deleteHotel.location));
+        if (deleteLocation.hotelsList.size() == 1) // if there is only 1 hotel in the hotelsList remove the node
+            locations.remove(deleteLocation);
+        else
+            deleteLocation.hotelsList.remove(deleteHotel);
+    }
+
+    public void findHotelbyLocation() {
+        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        System.out.print("FIND HOTEL BY LOCATION\nLocation of the Hotel : ");
+        String search = input.nextLine();
+        Location findLocation = locations.find(new Location(search));
+        if (findLocation != null) {
+            int i=1;
+            for(Hotel nextHotel : findLocation.hotelsList){
+                System.out.println(i + ".  " + nextHotel);
+                i++;
+            }
+            return;
+        }
+        System.out.println("Location could not found.");
     }
 
 }
