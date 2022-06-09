@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         int menu;
-        // turları bst ile tutma.
+        // verilerin CSV'den okunmasi menu gelmeden once yapilabilir
         do{
 
             System.out.println("\n\n    TURISTICH    ");

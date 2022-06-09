@@ -33,3 +33,27 @@ HOTEL MANAGER: ömer, ayşe elif
 ADMIN: umut, çağla
 hotel ,tour, ticket eksiklikleri doldurulucak.
 comparatorlar utilities altına alınıcak. (?)
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Set Map, the da ta structure should be navigable which has sorted access
+    ArrayListler set-map yapilabilir key index olur gibi , TreeSet(sorted)
+    turlarin veya otellerin ratingleri HashTable icerisinde tutulabilir     (Umut)
+
+2. Skip List    (Ömer)
+    hotelManager , hotelleri fiyatlara gore sort etmede
+    ++Hotellerin alfabetik olarak siralanmasi
+
+3. Graph,    (Ali , Bensu)
+    rota islemleri icin -> vertexler id'nin yani sira location bilgisi tutabilir
+    tours routes..  (map icerisine idlere location bilgileri eklenebilir)
+
+4. Balanced Binary Search Tree. (AVL R&B B-Tree)    (Umut)
+    onceki tree kullanimlarinin bazilari balanced hale getirilebilir
+
+
+verilerin CSV'den (veya txt) okunmasi menu gelmeden once yapilabilir     (Cagla)
+menulerin tasarimlari tamamlanacak ,test caseler uygulanacak   (Zeynep)
+
+
