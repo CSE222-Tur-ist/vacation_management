@@ -1,9 +1,8 @@
 package com;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Locale;
-import java.util.Queue;
+import com.datastructures.Graph;
+
+import java.util.*;
 
 public class Tour implements Comparator<Tour> {
     protected String startDate;
@@ -11,8 +10,10 @@ public class Tour implements Comparator<Tour> {
     protected String name;
     protected int numberofTickets;
 
-    // rota için linked list kullanılabilir.
+    // rota için linked list kullanılabilir.(yeni versiyonda graph gelicek)
     protected LinkedList<String> route = new LinkedList<>();
+    protected Graph mainRoute;
+    protected Hashtable<Integer , String> locationTable = new Hashtable<>();
 
     protected double price;
     protected Queue<String> comments;
@@ -32,7 +33,6 @@ public class Tour implements Comparator<Tour> {
     }
 
     public Tour(){
-
     }
 
     @Override

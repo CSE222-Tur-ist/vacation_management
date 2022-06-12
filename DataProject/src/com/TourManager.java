@@ -1,5 +1,8 @@
 package com;
 
+import com.datastructures.Edge;
+import com.datastructures.ListGraph;
+
 import java.util.*;
 
 public class TourManager extends User {
@@ -15,32 +18,42 @@ public class TourManager extends User {
 
     //buradaki rota için farklı data stru. kullanıalbilir
     public void addTour(){ // send request to admin for add tour
-        Tour newtour = new Tour();
+        Tour newTour = new Tour();
         String route;
+        int counter = 0;
 
         if(input.hasNextLine()) input.nextLine(); // clear buffer
 
         System.out.print("Name of Tour : ");
-        newtour.name = input.nextLine();
-        System.out.print("Route of Tour(istanbul-ankara-izmir) : ");
+        newTour.name = input.nextLine();
+        System.out.print("Route of Tour(Ex: Istanbul-Ankara-Izmir) : ");
         route = input.nextLine();
-        newtour.route.add(java.util.Arrays.toString(route.split("\\-")));
-        System.out.print("Start Date of Tour : ");
-        newtour.startDate = input.nextLine();
-        System.out.print("End Date of Tour : ");
-        newtour.endDate = input.nextLine();
-        System.out.print("Number of Tickets for Tour : ");
-        newtour.numberofTickets = input.nextInt();
-        System.out.print("Price of Ticket : ");
-        newtour.price = input.nextDouble();
 
-
-        for(Tour nextTour : tours){
-            if(nextTour.name.equals(newtour.name)) System.out.print("This name already exists !");
-            else tours.add(newtour);
-
+        newTour.route.add(java.util.Arrays.toString(route.split("\\-")));
+        ListIterator<String> iter = newTour.route.listIterator();
+        newTour.mainRoute = new ListGraph(newTour.route.size() , true);
+        while(iter.hasNext()){
+            String temp = iter.next();
+            newTour.locationTable.put(counter , temp);
+            if (counter >= 1){
+                newTour.mainRoute.insert(new Edge(counter-1 , counter));    // can be weighted edge
+            }
+            counter++;
         }
 
+        System.out.print("Start Date of Tour : ");
+        newTour.startDate = input.nextLine();
+        System.out.print("End Date of Tour : ");
+        newTour.endDate = input.nextLine();
+        System.out.print("Number of Tickets for Tour : ");
+        newTour.numberofTickets = input.nextInt();
+        System.out.print("Price of Ticket : ");
+        newTour.price = input.nextDouble();
+
+        for(Tour nextTour : tours){
+            if(nextTour.name.equals(newTour.name)) System.out.print("This name already exists !");
+            else tours.add(newTour);
+        }
     }
 
 
