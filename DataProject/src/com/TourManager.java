@@ -68,7 +68,7 @@ public class TourManager extends User {
 
     }
     private boolean updateTourInformation(String tourName){
-        int select;
+        int select , counter = 0;
         String route;
         for(Tour updateTour : tours){
             if(updateTour.name.equals(tourName)){
@@ -103,6 +103,17 @@ public class TourManager extends User {
                             route = input.nextLine();
                             updateTour.route.clear();
                             updateTour.route.add(java.util.Arrays.toString(route.split("\\-")));
+
+                            ListIterator<String> iter = updateTour.route.listIterator();
+                            updateTour.mainRoute = new ListGraph(updateTour.route.size() , true);
+                            while(iter.hasNext()){
+                                String temp = iter.next();
+                                updateTour.locationTable.put(counter , temp);
+                                if (counter >= 1){
+                                    updateTour.mainRoute.insert(new Edge(counter-1 , counter));    // can be weighted edge
+                                }
+                                counter++;
+                            }
                             break;
 
                         case 6: return true;
