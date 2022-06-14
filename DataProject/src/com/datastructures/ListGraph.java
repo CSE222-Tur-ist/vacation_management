@@ -5,6 +5,7 @@ import java.io.*;
 
 /** A ListGraph is an extension of the AbstractGraph abstract class
 *   that uses an array of lists to represent the edges.
+*   @author Koffman and Wolfgang
 */
 
 public class ListGraph
@@ -82,7 +83,7 @@ public class ListGraph
    */
   public void loadEdgesFromFile(BufferedReader bufferedReader) throws
       IOException {
-
+    /**** BEGIN EXERCISE ****/
     String line;
     while ( (line = bufferedReader.readLine()) != null
            && line.length() != 0) {
@@ -96,4 +97,5 @@ public class ListGraph
     }
     /**** END EXERCISE ****/
   }
+
 }
