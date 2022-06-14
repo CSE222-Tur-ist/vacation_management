@@ -163,7 +163,24 @@ public class Customer extends User {
 
             return true;
         }
-        else return false;
+        else{
+            System.out.println("Chosen Hotel is not available! \n" +
+                    "The closest available hotels to the chosen hotel are as follows :");
+            nearHotels(chosenHotel.location);
+            String hotelName;
+            if(input.hasNextLine()) input.nextLine(); // clear buffer
+            System.out.print("\nEnter hotel name to make reservation : ");
+            hotelName = input.nextLine();
+
+            for(Hotel reservationHotel : hotels) {
+                if (reservationHotel.name.equals(hotelName)) {
+                    if(makeReservationForHotel(reservationHotel)) System.out.println("\nReservation made Successfully.");
+                    else System.out.println("\nNo Rooms Left or Dates are not Available !");
+                }
+            }
+            return true;
+        }
+//        return false;
     }
 
     private boolean checkDates(int startDay,int startMonth,int endDay,int endMonth,Hotel chosenHotel){

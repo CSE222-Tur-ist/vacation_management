@@ -184,7 +184,7 @@ public abstract class Utilities {
         }
     }
 
-    private PriorityQueue<Pair> nearHotels(String loc){
+    protected void nearHotels(String loc){
         double count = 0;
         Hotel tempH;
         ArrayList<Hotel> tempHotels = new ArrayList<>(hotels);
@@ -204,7 +204,15 @@ public abstract class Utilities {
             tempHotels.remove(tempH);
             count++;
         }
-        return nearHotelQ;
+
+        int i = 1;
+        for (Pair nextPair : nearHotelQ) {
+            if (nextPair.hotel.numberofRooms != 0){
+                System.out.println(i + ".  " + nextPair.hotel);
+                i++;
+            }
+            if (i > 5)break;
+        }
     }
 
 }

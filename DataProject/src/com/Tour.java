@@ -47,12 +47,14 @@ public class Tour implements Comparator<Tour> {
         str.append("End Date : ").append(endDate).append("\n");
         str.append("Price : ").append(price).append(" ₺\n");
         str.append("Comments\n");
-        for (String comment : comments)
-            str.append(comment).append("\n");
-
-        // ortalama hespalama değişebilir
-        for (int rate : rates)
-            aveRate += rate;
+        if(comments != null){
+            for (String comment : comments)
+                str.append(comment).append("\n");
+        }
+        if (rates != null){
+            for (int rate : rates)
+                aveRate += rate;
+        }
         aveRate = aveRate/rateSize;
         str.append("Rate : ").append(aveRate).append("\n");
         return str.toString();
