@@ -11,7 +11,7 @@ import java.util.*;
 public class Hotel implements Comparator<Hotel>{
 
     public enum compareType {
-        NAME, PRICE, RATE
+        NAME, PRICE, RATE, LOCATION
     }
     compareType type = compareType.NAME;
 
@@ -133,9 +133,14 @@ public class Hotel implements Comparator<Hotel>{
         // ---------------------------------------
         if (type == compareType.PRICE)
             return Double.compare(hotel1.price, hotel2.price);
-        else
+
+        // ---------------------------------------
+        if (type == compareType.NAME)
             return hotel1.name.compareTo(hotel2.name);
 
+        // ---------------------------------------
+        else
+            return Double.compare(hotel1.LOCATION, hotel2.price);
     }
 }
 class month {

@@ -184,7 +184,7 @@ public abstract class Utilities {
     }
 
     private void sortbyLocationH(String loc){
-        PriorityQueue<Hotel> pqP = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.PRICE));
+        PriorityQueue<Hotel> pqL = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.LOCATION));
         for(Hotel nextHotel : hotels){
             if(nextHotel.location.equals(loc)){
 
