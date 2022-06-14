@@ -110,12 +110,12 @@ public class Hotel implements Comparator<Hotel>{
         str.append("Comments\n");
         for (String comment : comments)
             str.append(comment).append("\n");
-        if (rates != null){
-            for (int rate : rates)
-                aveRate += rate;
-            aveRate = aveRate/rateSize;
-            str.append("Rate : ").append(aveRate).append("\n");
-        }
+
+        // ortalama hespalama değişebilir
+        for (int rate : rates)
+            aveRate += rate;
+        aveRate = aveRate/rateSize;
+        str.append("Rate : ").append(aveRate).append("\n");
         return str.toString();
     }
     // Overriding compare()method of Comparator
