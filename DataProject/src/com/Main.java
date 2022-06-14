@@ -13,9 +13,8 @@ public class Main {
 
     public static void main(String[] args) {
         int menu;
-        // turları bst ile tutma.
+        // verilerin CSV'den okunmasi menu gelmeden once yapilabilir
         do{
-
             System.out.println("\n\n    TURISTICH    ");
 
             System.out.println("------------------");
@@ -25,14 +24,12 @@ public class Main {
             System.out.print("Enter : ");
             menu = input.nextInt();
 
-
             switch (menu){
                 case 1: System.out.println("\n-----------------------"); register(); break;
                 case 2: System.out.println("\n-----------------------"); login(); break;
                 default: System.out.println("Your choice is not correct !"); break;
             }
         }while(menu!=0); // exit sayısı değişecek
-
 
         input.close();
     }
@@ -110,8 +107,7 @@ public class Main {
     public static boolean register() {
         int choosenRole;
 
-
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        //if(input.hasNextLine()) input.nextLine(); // clear buffer
         System.out.println("Register as Customer");
         //System.out.println("Choose role to register");
         System.out.println("-----------------------");

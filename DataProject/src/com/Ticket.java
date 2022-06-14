@@ -24,7 +24,7 @@ public class Ticket {
 
         str.append(ticketName.toUpperCase(Locale.ROOT)).append("\n");
         str.append("-".repeat(ticketName.length()));
-
+        str.append("\n");
         for(int i=0;i<participants.size();i++){
             str.append("   - "+participants.get(i)+"\n");
         }

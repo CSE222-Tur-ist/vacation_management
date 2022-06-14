@@ -219,7 +219,7 @@ public class Admin extends User {
             System.out.println("5-> Remove Hotel Manager from the system");
             System.out.println("6-> Update a Hotel Manager in the system");
 
-            System.out.println("16-> Exit");
+            System.out.println("7-> Exit");
             System.out.print("Enter your choice: ");
             option= input.nextInt();
 
@@ -240,7 +240,7 @@ public class Admin extends User {
 
                 default: System.out.println("Input is not valid! Try again.."); break;
             }
-        }while (option != 16);
+        }while (option != 7);
 
         input.close();
     }

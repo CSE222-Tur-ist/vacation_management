@@ -1,0 +1,9 @@
+ortak data tiplerini abstract classta tutup diğer kullanıcı tiplerinde extend etmek
+view favorites fonksiyonu customer için eklendi.
+view tickets fonksiyonu customer için eklendi.
+
+customer-contact fonksiyonu gitti...
+customer -suggestion & request gitti..
+
+tour manager ticketların geldi/gelmedi statüsünü değiştirebilir, geldi işaretlenen ticketların sahipleri
+turlara yorum ve puan bırakabilir.

@@ -1,9 +1,8 @@
 package com;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.Locale;
-import java.util.Queue;
+import com.datastructures.Graph;
+
+import java.util.*;
 
 public class Tour implements Comparator<Tour> {
     protected String startDate;
@@ -11,8 +10,9 @@ public class Tour implements Comparator<Tour> {
     protected String name;
     protected int numberofTickets;
 
-    // rota için linked list kullanılabilir.
+    // rota için linked list kullanılabilir.(yeni versiyonda graph gelicek)
     protected LinkedList<String> route = new LinkedList<>();
+
 
     protected double price;
     protected Queue<String> comments;
@@ -32,7 +32,16 @@ public class Tour implements Comparator<Tour> {
     }
 
     public Tour(){
-
+    }
+    public Tour(String startDate, String endDate, String name, int numberofTickets, LinkedList<String> route, double price, Queue<String> comments, Queue<Integer> rates) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.name = name;
+        this.numberofTickets = numberofTickets;
+        this.route = route;
+        this.price = price;
+        this.comments = comments;
+        this.rates = rates;
     }
 
     @Override
@@ -48,14 +57,16 @@ public class Tour implements Comparator<Tour> {
         str.append("End Date : ").append(endDate).append("\n");
         str.append("Price : ").append(price).append(" ₺\n");
         str.append("Comments\n");
-        for (String comment : comments)
-            str.append(comment).append("\n");
-
-        // ortalama hespalama değişebilir
-        for (int rate : rates)
-            aveRate += rate;
-        aveRate = aveRate/rateSize;
-        str.append("Rate : ").append(aveRate).append("\n");
+        if(comments != null){
+            for (String comment : comments)
+                str.append(comment).append("\n");
+        }
+        if (rates != null){
+            for (int rate : rates)
+                aveRate += rate;
+            aveRate = aveRate/rateSize;
+            str.append("Rate : ").append(aveRate).append("\n");
+        }
         return str.toString();
     }
 
