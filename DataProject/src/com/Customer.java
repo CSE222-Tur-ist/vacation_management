@@ -36,15 +36,13 @@ public class Customer extends User {
     private void buyTicketForTour() {
         searchTours();
         String tourName;
-        if(tours.size()==0) {
-            return;
-        }
-        //if(input.hasNextLine()) input.nextLine(); // clear buffer
+
+        if(input.hasNextLine()) input.nextLine(); // clear buffer
         System.out.print("\nEnter tour name for buy a Ticket : ");
         tourName = input.nextLine();
 
         for(Tour ticketTour : tours) {
-            if (ticketTour.name.equals(tourName)) {
+            if (ticketTour.name.toUpperCase(Locale.ROOT).equals(tourName)) {
                 if(buyTicketForTourHelper(ticketTour)) System.out.println("\nTicket Bought Successfully.");
                 else System.out.println("\nNo Tickets Left !");
             }
@@ -65,8 +63,9 @@ public class Customer extends User {
             //if(input.hasNextLine()) input.nextLine(); // clear buffer
             System.out.print("\nHow many tickets do you want to buy ?  :  ");
             numberofParticipants = input.nextInt();
+            if(input.hasNextLine()) input.nextLine(); // clear buffer
             for(int i=0;i<numberofParticipants;i++){
-                System.out.print("\nEnter "+i+1+". name");
+                System.out.print("\nEnter "+(i+1)+". name : ");
                 name = input.nextLine();
                 newTicket.participants.push(name);
             }
@@ -87,7 +86,7 @@ public class Customer extends User {
     private void cancelTicket() {
         int ticketnumber;
         viewTickets();
-        if(tickets.size()!=0) {
+        if(tickets.size()!=0){
             System.out.print("\nSelect ticket to cancel : ");
             ticketnumber = input.nextInt();
             if (ticketnumber > tickets.size()) System.out.println("Cancel operation failed !");
@@ -106,7 +105,7 @@ public class Customer extends User {
     private boolean cancelTicket(Ticket ticket) {
         ticket.isCanceled = true;
         for(Tour nextTour : tours){
-            if(ticket.ticketName.equals(nextTour.name)){
+            if(ticket.ticketName.toUpperCase(Locale.ROOT).equals(nextTour.name)){
                 nextTour.numberofTickets++;
                 return true;
             }
@@ -144,7 +143,7 @@ public class Customer extends User {
         hotelName = input.nextLine();
 
         for(Hotel reservationHotel : hotels) {
-            if (reservationHotel.name.equals(hotelName)) {
+            if (reservationHotel.name.toUpperCase(Locale.ROOT).equals(hotelName)) {
                 if(makeReservationForHotel(reservationHotel)) System.out.println("\nReservation made Successfully.");
                 else System.out.println("\nNo Rooms Left or Dates are not Available !");
             }
@@ -211,7 +210,7 @@ public class Customer extends User {
             hotelName = input.nextLine();
 
             for(Hotel reservationHotel : hotels) {
-                if (reservationHotel.name.equals(hotelName)) {
+                if (reservationHotel.name.toUpperCase(Locale.ROOT).equals(hotelName)) {
                     if(makeReservationForHotel(reservationHotel)) System.out.println("\nReservation made Successfully.");
                     else System.out.println("\nNo Rooms Left or Dates are not Available !");
                 }
@@ -282,7 +281,7 @@ public class Customer extends User {
         int i=1;
         System.out.println("\nYour Reservations");
         System.out.println("-----------------");
-        if(reservations.size()==0) System.out.println("No Reservaitons!");
+        if(reservations.size()==0) System.out.println("No Reservations!");
         else {
             for (Reservation nextReservation : reservations) {
                 System.out.println(i + ". Reservation : " + nextReservation.toString() + "\n");
@@ -316,7 +315,7 @@ public class Customer extends User {
      */
     private boolean cancelReservation(Reservation reservation) {
         for(Hotel nextHotel : hotels){
-            if(reservation.reservationName.equals(nextHotel.name)){
+            if(reservation.reservationName.toUpperCase(Locale.ROOT).equals(nextHotel.name)){
                 nextHotel.numberofRooms++;
                 adjustCalendarforReservation(reservation.startDay,reservation.startMonth,reservation.endDay,reservation.endMonth,nextHotel,false);
                 reservations.remove(reservation);
@@ -336,7 +335,7 @@ public class Customer extends User {
         hotelName = input.nextLine();
 
         for(Hotel nextHotel : hotels) {
-            if (nextHotel.name.equals(hotelName)) {
+            if (nextHotel.name.toUpperCase(Locale.ROOT).equals(hotelName)) {
                 if(addToMyFavoriteHotels(nextHotel)) System.out.println("\nHotel added to favorites Successfully.");
                 else System.out.println("\nAn Error Happened !");
             }
@@ -363,7 +362,7 @@ public class Customer extends User {
         tourName = input.nextLine();
 
         for(Tour nextTour : tours) {
-            if (nextTour.name.equals(tourName)) {
+            if (nextTour.name.toUpperCase(Locale.ROOT).equals(tourName)) {
                 if(addToMyFavoriteTours(nextTour)) System.out.println("\nTour added to favorites Successfully.");
                 else System.out.println("\nAn Error Happened !");
             }
