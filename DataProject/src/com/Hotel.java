@@ -10,8 +10,9 @@ import java.util.*;
 
 public class Hotel implements Comparator<Hotel>{
 
+
     public enum compareType {
-        NAME, PRICE, RATE, LOCATION
+        NAME, PRICE, RATE, DISTANCE
     }
     compareType type = compareType.NAME;
 
@@ -140,7 +141,7 @@ public class Hotel implements Comparator<Hotel>{
 
         // ---------------------------------------
         else
-            return Double.compare(hotel1.LOCATION, hotel2.price);
+            return Double.compare(hotel1.DISTANCE, hotel2.DISTANCE);
     }
 }
 class month {

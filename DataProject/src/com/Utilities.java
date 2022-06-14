@@ -1,5 +1,6 @@
 package com;
 import java.io.*;
+import java.security.KeyPair;
 import java.util.*;
 import com.datastructures.*;
 
@@ -183,12 +184,17 @@ public abstract class Utilities {
         }
     }
 
-    private void sortbyLocationH(String loc){
-        PriorityQueue<Hotel> pqL = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.LOCATION));
+    private void nearHotels(String loc){
+        double mindist = Double.POSITIVE_INFINITY;
+        int count=0;
+        ArrayList<Hotel> list = new ArrayList<>();
         for(Hotel nextHotel : hotels){
-            if(nextHotel.location.equals(loc)){
-
+            double distance = map.getEdge(indexLocation(loc),indexLocation(nextHotel.location)).getWeight();
+            if(mindist>distance) {
+                mindist = distance;
+                list.add(count,nextHotel);
             }
+
         }
     }
 
