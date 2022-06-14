@@ -1,8 +1,5 @@
 package com;
 
-import com.datastructures.Edge;
-import com.datastructures.ListGraph;
-
 import java.util.*;
 
 public class TourManager extends User {
@@ -18,32 +15,32 @@ public class TourManager extends User {
 
     //buradaki rota için farklı data stru. kullanıalbilir
     public void addTour(){ // send request to admin for add tour
-        Tour newTour = new Tour();
+        Tour newtour = new Tour();
         String route;
-        int counter = 0;
 
         if(input.hasNextLine()) input.nextLine(); // clear buffer
 
         System.out.print("Name of Tour : ");
-        newTour.name = input.nextLine();
-        System.out.print("Route of Tour(Ex: Istanbul-Ankara-Izmir) : ");
+        newtour.name = input.nextLine();
+        System.out.print("Route of Tour(istanbul-ankara-izmir) : ");
         route = input.nextLine();
-
-        newTour.route.add(java.util.Arrays.toString(route.split("\\-")));
-
+        newtour.route.add(java.util.Arrays.toString(route.split("\\-")));
         System.out.print("Start Date of Tour : ");
-        newTour.startDate = input.nextLine();
+        newtour.startDate = input.nextLine();
         System.out.print("End Date of Tour : ");
-        newTour.endDate = input.nextLine();
+        newtour.endDate = input.nextLine();
         System.out.print("Number of Tickets for Tour : ");
-        newTour.numberofTickets = input.nextInt();
+        newtour.numberofTickets = input.nextInt();
         System.out.print("Price of Ticket : ");
-        newTour.price = input.nextDouble();
+        newtour.price = input.nextDouble();
+
 
         for(Tour nextTour : tours){
-            if(nextTour.name.equals(newTour.name)) System.out.print("This name already exists !");
-            else tours.add(newTour);
+            if(nextTour.name.equals(newtour.name)) System.out.print("This name already exists !");
+            else tours.add(newtour);
+
         }
+
     }
 
 
@@ -58,7 +55,7 @@ public class TourManager extends User {
 
     }
     private boolean updateTourInformation(String tourName){
-        int select , counter = 0;
+        int select;
         String route;
         for(Tour updateTour : tours){
             if(updateTour.name.equals(tourName)){
@@ -93,9 +90,6 @@ public class TourManager extends User {
                             route = input.nextLine();
                             updateTour.route.clear();
                             updateTour.route.add(java.util.Arrays.toString(route.split("\\-")));
-
-                            ListIterator<String> iter = updateTour.route.listIterator();
-
                             break;
 
                         case 6: return true;
