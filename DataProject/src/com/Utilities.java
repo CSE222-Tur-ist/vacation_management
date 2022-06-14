@@ -1,5 +1,6 @@
 package com;
 import java.util.*;
+import com.datastructures.*;
 
 public abstract class Utilities {
     public static Scanner input = new Scanner(System.in);
@@ -140,6 +141,33 @@ public abstract class Utilities {
         }
     }
 
+    public static void sortbyAlphabetic_withSkipList() {
+    
+        SkipList<String, String> skipList = new SkipList<>();
 
+        for (int i = 0; i < hotels.size(); i++) {
+            skipList.add(hotels.get(i).name.toString().toLowerCase(),"Name: "+ hotels.get(i).name.toString() + " / Location: "+hotels.get(i).location.toString() + " / Features: " + hotels.get(i).features.toString()+
+                    " / Number of Rooms: " + hotels.get(i).numberofRooms + " / Price: " +hotels.get(i).price);
+        }
+
+        for (String i : skipList) {
+        	System.out.println(skipList.get(i));
+        }
+    }
+
+    public static void sortbyPrice__withSkipList(){
+
+        SkipList<Double, String> skipList = new SkipList<>();
+
+        for (int i = 0; i < hotels.size(); i++) {
+            skipList.add(hotels.get(i).price,"Name: "+ hotels.get(i).name.toString() + " / Location: "+hotels.get(i).location.toString() + " / Features: " + hotels.get(i).features.toString()+
+                    " / Number of Rooms: " + hotels.get(i).numberofRooms + " / Price: " +hotels.get(i).price);
+        }
+        
+        for (Double i : skipList) {
+        	System.out.println(skipList.get(i));
+        }
+
+    }
 
 }
