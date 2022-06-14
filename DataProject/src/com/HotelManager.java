@@ -171,10 +171,12 @@ public class HotelManager extends User {
 
     private void removeLocation(Hotel deleteHotel) {
         Location deleteLocation = locations.find(new Location(deleteHotel.location));
-        if (deleteLocation.hotelsList.size() == 1) // if there is only 1 hotel in the hotelsList remove the node
-            locations.remove(deleteLocation);
-        else
-            deleteLocation.hotelsList.remove(deleteHotel);
+        if (deleteLocation != null) {
+            if (deleteLocation.hotelsList.size() == 1) // if there is only 1 hotel in the hotelsList remove the node
+                locations.remove(deleteLocation);
+            else
+                deleteLocation.hotelsList.remove(deleteHotel);
+        }
     }
 
     public void findHotelbyLocation() {

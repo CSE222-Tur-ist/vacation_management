@@ -31,7 +31,7 @@ public class Reservation implements Comparable<Reservation> {
 
         str.append(reservationName.toUpperCase(Locale.ROOT)).append("\n");
         str.append("-".repeat(reservationName.length()));
-
+        str.append("\n");
         for(int i=0;i<participants.size();i++){
             str.append("   - "+participants.get(i)+"\n");
         }

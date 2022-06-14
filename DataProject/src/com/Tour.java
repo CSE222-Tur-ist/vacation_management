@@ -64,9 +64,9 @@ public class Tour implements Comparator<Tour> {
         if (rates != null){
             for (int rate : rates)
                 aveRate += rate;
+            aveRate = aveRate/rateSize;
+            str.append("Rate : ").append(aveRate).append("\n");
         }
-        aveRate = aveRate/rateSize;
-        str.append("Rate : ").append(aveRate).append("\n");
         return str.toString();
     }
 
