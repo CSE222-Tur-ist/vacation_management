@@ -12,7 +12,7 @@ public class Hotel implements Comparator<Hotel>{
 
 
     public enum compareType {
-        NAME, PRICE, RATE, DISTANCE
+        NAME, PRICE, RATE
     }
     compareType type = compareType.NAME;
 

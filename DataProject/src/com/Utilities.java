@@ -63,28 +63,36 @@ public abstract class Utilities {
     public void searchTours() {
         int choose;
 
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        //if(input.hasNextLine()) input.nextLine(); // clear buffer
 
-        System.out.println("------------------------");
+        //System.out.println("------------------------");
         System.out.println("1. List the Tours\n2. Most Populars\n3. Sort by a-z\n4. Sort by Price");
         System.out.print("Enter : ");
         choose = input.nextInt();
         switch (choose){
-            case 1: listTours();
-            case 2: sortbyRateT();
-            case 3: sortbyAlphabeticT();
-            case 4: sortbyPriceT();
+            case 1: listTours(); break;
+            case 2: sortbyRateT();break;
+            case 3: sortbyAlphabeticT(); break;
+            case 4: sortbyPriceT(); break;
             default: System.out.println("Your choice is not correct !"); break;
         }
     }
     protected static void listTours(){
         int i=1;
+        if(tours.size()==0) {
+            System.out.println("No tours!");
+            return;
+        }
         for(Tour nextTour : tours){
             System.out.println(i + ".  "+ nextTour);
             i++;
         }
     }
     private void sortbyRateT() {
+        if(tours.size()==0) {
+            System.out.println("No tours!\n\n");
+            return;
+        }
         PriorityQueue<Tour> pqR = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.RATE));
         for (Tour nextTour : tours) {
             pqR.add(nextTour);
@@ -97,7 +105,10 @@ public abstract class Utilities {
     }
 
     private void sortbyAlphabeticT() {
-
+        if(tours.size()==0) {
+            System.out.println("No tours!\n\n");
+            return;
+        }
         PriorityQueue<Tour> pqA = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.NAME));
         for (Tour nextTour : tours) {
             pqA.add(nextTour);
@@ -110,6 +121,10 @@ public abstract class Utilities {
     }
 
     private void sortbyPriceT() {
+        if(tours.size()==0) {
+            System.out.println("No tours!\n\n");
+            return;
+        }
         PriorityQueue<Tour> pqP = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.PRICE));
         for (Tour nextTour : tours) {
             pqP.add(nextTour);
@@ -132,22 +147,29 @@ public abstract class Utilities {
         System.out.print("Enter : ");
         choose = input.nextInt();
         switch (choose){
-            case 1: listHotels();
-            case 2: sortbyRate();
-            case 3: sortbyAlphabetic();
-            case 4: sortbyPrice();
+            case 1: listHotels(); break;
+            case 2: sortbyRate(); break;
+            case 3: sortbyAlphabetic(); break;
+            case 4: sortbyPrice(); break;
             default: System.out.println("Your choice is not correct !"); break;
         }
     }
     protected static void listHotels(){
         int i=1;
+        if(hotels.size()==0) {
+            System.out.println("No hotels!\n\n");
+            return;
+        }
         for(Hotel nextHotel : hotels){
             System.out.println(i + ".  "+ nextHotel);
             i++;
         }
     }
     private void sortbyRate() {
-
+        if(hotels.size()==0) {
+            System.out.println("No hotels!\n\n");
+            return;
+        }
         PriorityQueue<Hotel> pqR = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.RATE));
         for (Hotel nextHotel : hotels) {
             pqR.add(nextHotel);
@@ -160,6 +182,10 @@ public abstract class Utilities {
     }
 
     public void sortbyAlphabetic() {
+        if(hotels.size()==0) {
+            System.out.println("No hotels!\n\n");
+            return;
+        }
         PriorityQueue<Hotel> pqA = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.NAME));
         for (Hotel nextHotel : hotels) {
             pqA.add(nextHotel);
@@ -172,7 +198,7 @@ public abstract class Utilities {
     }
 
     private void sortbyPrice() {
-
+        if(hotels==null) return;
         PriorityQueue<Hotel> pqP = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.PRICE));
         for (Hotel nextHotel : hotels) {
             pqP.add(nextHotel);
@@ -185,6 +211,10 @@ public abstract class Utilities {
     }
 
     protected void nearHotels(String loc){
+        if(hotels.size()==0) {
+            System.out.println("No hotels!\n\n");
+            return;
+        }
         double count = 0;
         Hotel tempH;
         ArrayList<Hotel> tempHotels = new ArrayList<>(hotels);

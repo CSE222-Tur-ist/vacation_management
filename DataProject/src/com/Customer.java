@@ -31,7 +31,10 @@ public class Customer extends User {
     private void buyTicketForTour() {
         searchTours();
         String tourName;
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        if(tours.size()==0) {
+            return;
+        }
+        //if(input.hasNextLine()) input.nextLine(); // clear buffer
         System.out.print("\nEnter tour name for buy a Ticket : ");
         tourName = input.nextLine();
 
@@ -72,12 +75,14 @@ public class Customer extends User {
     private void cancelTicket() {
         int ticketnumber;
         viewTickets();
-        System.out.print("\nSelect ticket to cancel : ");
-        ticketnumber = input.nextInt();
-        if(ticketnumber>tickets.size()) System.out.println("Cancel operation failed !");
-        else {
-            if(cancelTicket(tickets.get(ticketnumber))) System.out.println("Ticket is canceled successfully");
-            else System.out.println("Cancel operation failed !");
+        if(tickets.size()!=0) {
+            System.out.print("\nSelect ticket to cancel : ");
+            ticketnumber = input.nextInt();
+            if (ticketnumber > tickets.size()) System.out.println("Cancel operation failed !");
+            else {
+                if (cancelTicket(tickets.get(ticketnumber))) System.out.println("Ticket is canceled successfully");
+                else System.out.println("Cancel operation failed !");
+            }
         }
     }
 
@@ -98,9 +103,12 @@ public class Customer extends User {
         int i=1;
         System.out.println("\nYour Tickets");
         System.out.println("------------");
-        for(Ticket nextTicket : tickets){
-            System.out.println(i+". Ticket : "+nextTicket.toString()+"\n");
-            i++;
+        if(tickets.size()==0) System.out.println("No tickets!");
+        else {
+            for (Ticket nextTicket : tickets) {
+                System.out.println(i + ". Ticket : " + nextTicket.toString() + "\n");
+                i++;
+            }
         }
     }
 
@@ -222,21 +230,27 @@ public class Customer extends User {
         int i=1;
         System.out.println("\nYour Reservations");
         System.out.println("-----------------");
-        for(Reservation nextReservation : reservations){
-            System.out.println(i+". Reservation : "+nextReservation.toString()+"\n");
-            i++;
+        if(reservations.size()==0) System.out.println("No Reservaitons!");
+        else {
+            for (Reservation nextReservation : reservations) {
+                System.out.println(i + ". Reservation : " + nextReservation.toString() + "\n");
+                i++;
+            }
         }
     }
 
     private void cancelReservation() {
         int reservationnumber;
         viewReservations();
-        System.out.print("\nSelect reservation to cancel : ");
-        reservationnumber = input.nextInt();
-        if(reservationnumber>reservations.size()) System.out.println("Cancel operation failed !");
-        else {
-            if(cancelReservation(reservations.get(reservationnumber))) System.out.println("Reservation is canceled successfully");
-            else System.out.println("Cancel operation failed !");
+        if(reservations.size()!=0) {
+            System.out.print("\nSelect reservation to cancel : ");
+            reservationnumber = input.nextInt();
+            if (reservationnumber > reservations.size()) System.out.println("Cancel operation failed !");
+            else {
+                if (cancelReservation(reservations.get(reservationnumber)))
+                    System.out.println("Reservation is canceled successfully");
+                else System.out.println("Cancel operation failed !");
+            }
         }
     }
     private boolean cancelReservation(Reservation reservation) {
@@ -451,7 +465,7 @@ public class Customer extends User {
         System.out.println("Welcome to the Customer Menu..");
 
         do{
-            System.out.println("1-> Buy a Ticket for a Tour");
+            System.out.println("\n1-> Buy a Ticket for a Tour");
             System.out.println("2-> Cancel a Ticket");
             System.out.println("3-> View your Tickets");
             System.out.println("4-> Add a Tour to my Favourites.");
