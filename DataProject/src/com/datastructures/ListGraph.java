@@ -96,5 +96,4 @@ public class ListGraph
     }
     /**** END EXERCISE ****/
   }
-
 }

@@ -1,4 +1,5 @@
 package com;
+import java.io.*;
 import java.util.*;
 import com.datastructures.*;
 
@@ -13,6 +14,49 @@ public abstract class Utilities {
     static ArrayList<Hotel> hotels = new ArrayList<>(); // hotels confirmed by admin
 
     static BinarySearchTree<Location> locations = new BinarySearchTree<Location>(); // location names in alphabetical order, to be used in listing by location
+    static Graph map; // locations and distance between them
+    static ArrayList<String> locationTableforMap = new ArrayList<String>();
+    public Utilities(){ //for creating map
+        map = new ListGraph(8,true);
+        try {
+            BufferedReader csvReader = new BufferedReader(new FileReader("map.csv"));
+            String row;
+            while ((row = csvReader.readLine()) != null) { // for vertices
+                String[] data = row.split(";");
+                String source = data[0];
+                if(!locationTableforMap.contains(source)) {
+                    locationTableforMap.add(source);
+                }
+            }
+            csvReader.close();
+            locationTableforMap.remove(0); // ilki source basliği
+            /*ListIterator<String> iter = locationTableforMap.listIterator();
+            while(iter.hasNext())
+                System.out.println(iter.next());*/
+
+            BufferedReader csvReader_ = new BufferedReader(new FileReader("map.csv"));
+            String row_;
+            while ((row_ = csvReader_.readLine()) != null) { // for edges
+                String[] data = row_.split(";");
+                String source = data[0];
+                String dest = data[1];
+                int distance = Integer.parseInt(data[2]);
+                int ind1 = indexLocation(source);
+                int ind2 = indexLocation(dest);
+                if(ind1!=-1&&ind2!=-1)map.insert(new Edge(ind1,ind2,distance));
+            }
+            csvReader_.close();
+        }catch (Exception e){
+            System.out.println("Error while file reading !");
+        }
+    }
+
+    private int indexLocation(String loc){ // graph vertices are represented by ints but they actually string(location)
+        for(int i=0;i<locationTableforMap.size();i++){ // find the index of location in locationTableforMap
+            if(locationTableforMap.get(i).equals(loc)) return i;
+        }
+        return -1;
+    }
 
     // for tours.
     public void searchTours() {
@@ -139,6 +183,8 @@ public abstract class Utilities {
         }
     }
 
+    private void sortbyLocationH(String loc){
 
+    }
 
 }

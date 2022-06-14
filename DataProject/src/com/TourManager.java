@@ -30,16 +30,6 @@ public class TourManager extends User {
         route = input.nextLine();
 
         newTour.route.add(java.util.Arrays.toString(route.split("\\-")));
-        ListIterator<String> iter = newTour.route.listIterator();
-        newTour.mainRoute = new ListGraph(newTour.route.size() , true);
-        while(iter.hasNext()){
-            String temp = iter.next();
-            newTour.locationTable.put(counter , temp);
-            if (counter >= 1){
-                newTour.mainRoute.insert(new Edge(counter-1 , counter));    // can be weighted edge
-            }
-            counter++;
-        }
 
         System.out.print("Start Date of Tour : ");
         newTour.startDate = input.nextLine();
@@ -105,15 +95,7 @@ public class TourManager extends User {
                             updateTour.route.add(java.util.Arrays.toString(route.split("\\-")));
 
                             ListIterator<String> iter = updateTour.route.listIterator();
-                            updateTour.mainRoute = new ListGraph(updateTour.route.size() , true);
-                            while(iter.hasNext()){
-                                String temp = iter.next();
-                                updateTour.locationTable.put(counter , temp);
-                                if (counter >= 1){
-                                    updateTour.mainRoute.insert(new Edge(counter-1 , counter));    // can be weighted edge
-                                }
-                                counter++;
-                            }
+
                             break;
 
                         case 6: return true;

@@ -24,6 +24,9 @@ public class Customer extends User {
         super(username,name, surName, password,role,email);
         this.phoneNumber = phoneNumber;
     }
+    public Customer(){
+
+    }
 
     private void buyTicketForTour() {
         searchTours();

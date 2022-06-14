@@ -12,8 +12,7 @@ public class Tour implements Comparator<Tour> {
 
     // rota için linked list kullanılabilir.(yeni versiyonda graph gelicek)
     protected LinkedList<String> route = new LinkedList<>();
-    protected Graph mainRoute;
-    protected Hashtable<Integer , String> locationTable = new Hashtable<>();
+
 
     protected double price;
     protected Queue<String> comments;

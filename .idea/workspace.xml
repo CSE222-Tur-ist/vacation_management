@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7dca73fa-2547-493d-9d08-b8b8e14787bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataProject/src/com/Tour.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataProject/src/com/Tour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataProject/src/com/TourManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataProject/src/com/TourManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataProject/src/com/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/DataProject/src/com/Utilities.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -12,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="a.kaya" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,15 +36,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="GitStage.ChangesTree.GroupingKeys" value="directory&#10;module&#10;repository" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.17" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Casper/Desktop/masaüstü/grupodevi_final/vacation_management/DataProject/src/com",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.build"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Casper\Desktop\masaüstü\grupodevi_final\vacation_management\DataProject\src\com" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <module name="vacation_management" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -61,6 +82,7 @@
       <workItem from="1654802115224" duration="7206000" />
       <workItem from="1655039999686" duration="213000" />
       <workItem from="1655040250509" duration="172000" />
+      <workItem from="1655147809299" duration="2403000" />
     </task>
     <servers />
   </component>
