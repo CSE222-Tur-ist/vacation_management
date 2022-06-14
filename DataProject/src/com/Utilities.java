@@ -184,18 +184,41 @@ public abstract class Utilities {
         }
     }
 
-    private void nearHotels(String loc){
-        double mindist = Double.POSITIVE_INFINITY;
-        int count=0;
-        ArrayList<Hotel> list = new ArrayList<>();
-        for(Hotel nextHotel : hotels){
-            double distance = map.getEdge(indexLocation(loc),indexLocation(nextHotel.location)).getWeight();
-            if(mindist>distance) {
-                mindist = distance;
-                list.add(count,nextHotel);
-            }
+    private PriorityQueue<Pair> nearHotels(String loc){
+        double count = 0;
+        Hotel tempH;
+        ArrayList<Hotel> tempHotels = new ArrayList<>(hotels);
+        PriorityQueue<Pair> nearHotelQ = new PriorityQueue<>(8);
 
+        for (int i = 0 ; i < hotels.size() ; i++){
+            double minDist = Double.POSITIVE_INFINITY;
+            tempH = null;
+            for(Hotel nextHotel : tempHotels){
+                double distance = map.getEdge(indexLocation(loc),indexLocation(nextHotel.location)).getWeight();
+                if(minDist>distance) {
+                    minDist = distance;
+                    tempH = nextHotel;
+                }
+            }
+            nearHotelQ.offer(new Pair(count , tempH));
+            tempHotels.remove(tempH);
+            count++;
         }
+        return nearHotelQ;
     }
 
+}
+class Pair implements Comparable<Pair>{
+    double key;
+    Hotel hotel;
+
+    public Pair(double key , Hotel hotel){
+        this.key = key;
+        this.hotel = hotel;
+    }
+
+    @Override
+    public int compareTo(Pair o2) {
+        return Double.compare(this.key, o2.key);
+    }
 }

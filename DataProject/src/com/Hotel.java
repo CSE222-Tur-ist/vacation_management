@@ -136,12 +136,8 @@ public class Hotel implements Comparator<Hotel>{
             return Double.compare(hotel1.price, hotel2.price);
 
         // ---------------------------------------
-        if (type == compareType.NAME)
-            return hotel1.name.compareTo(hotel2.name);
-
-        // ---------------------------------------
         else
-            return Double.compare(hotel1.DISTANCE, hotel2.DISTANCE);
+            return hotel1.name.compareTo(hotel2.name);
     }
 }
 class month {
