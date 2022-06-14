@@ -1,23 +1,39 @@
 package com;
 import java.io.*;
-import java.security.KeyPair;
 import java.util.*;
 import com.datastructures.*;
 
-
+/**
+ * Utilities class allows us to use certain features of the vacation_management program.
+ */
 public abstract class Utilities {
+
+    /**for user inputs we use scanner */
     public static Scanner input = new Scanner(System.in);
 
+    /**Keeps Hotel Managers inside */
     static ArrayList<HotelManager> hotelManagers = new ArrayList<>();
+
+    /**Keeps Tour Managers inside */
     static ArrayList<TourManager> tourManagers = new ArrayList<>();
 
+    /**Keeps Existing Tours in */
     static ArrayList<Tour> tours = new ArrayList<>(); // tours confirmed by admin
+
+    /**Keeps Existing Hotels in */
     static ArrayList<Hotel> hotels = new ArrayList<>(); // hotels confirmed by admin
 
-    static BinarySearchTree<Location> locations = new BinarySearchTree<Location>(); // location names in alphabetical order, to be used in listing by location
-    static Graph map; // locations and distance between them
+    /** Keeps Location names in alphabetical order, to be used in listing by location */
+    static BinarySearchTree<Location> locations = new BinarySearchTree<Location>();
+
+    /**Keeps Locations and distance between them into a graph*/
+    static Graph map;
+
+    /**It keeps the location information in a way that its indexes are related to the IDs of our map graph.*/
     static ArrayList<String> locationTableforMap = new ArrayList<String>();
-    public Utilities(){ //for creating map
+
+    /** It is used to create our graph called map*/
+    public Utilities(){
         map = new ListGraph(8,true);
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader("map.csv"));
@@ -52,6 +68,11 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * This method takes the location information and returns ID(in graph) - index(in ArrayList) value
+     * @param loc location information
+     * @return int - index of the given location information
+     */
     private int indexLocation(String loc){ // graph vertices are represented by ints but they actually string(location)
         for(int i=0;i<locationTableforMap.size();i++){ // find the index of location in locationTableforMap
             if(locationTableforMap.get(i).equals(loc)) return i;
@@ -59,7 +80,9 @@ public abstract class Utilities {
         return -1;
     }
 
-    // for tours.
+    /**
+     * This method is used to sort the Tours in different ways and print them on the screen.
+     */
     public void searchTours() {
         int choose;
 
@@ -77,6 +100,10 @@ public abstract class Utilities {
             default: System.out.println("Your choice is not correct !"); break;
         }
     }
+
+    /**
+     * This method is used to print the Tours on the screen by looking at the order they were added.
+     */
     protected static void listTours(){
         int i=1;
         if(tours.size()==0) {
@@ -88,6 +115,10 @@ public abstract class Utilities {
             i++;
         }
     }
+
+    /**
+     * This method is used to print Tours by looking at their rates.
+     */
     private void sortbyRateT() {
         if(tours.size()==0) {
             System.out.println("No tours!\n\n");
@@ -104,6 +135,9 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * This method is used to print the tours in alphabetical order.
+     */
     private void sortbyAlphabeticT() {
         if(tours.size()==0) {
             System.out.println("No tours!\n\n");
@@ -120,6 +154,9 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * This method is used to print tours by looking at their prices.
+     */
     private void sortbyPriceT() {
         if(tours.size()==0) {
             System.out.println("No tours!\n\n");
@@ -136,7 +173,9 @@ public abstract class Utilities {
         }
     }
 
-    // for hotels
+    /**
+     * This method is used to sort the Hotels in different ways and print them on the screen.
+     */
     public void searchHotels(){
         int choose;
 
@@ -154,6 +193,10 @@ public abstract class Utilities {
             default: System.out.println("Your choice is not correct !"); break;
         }
     }
+
+    /**
+     * This method is used to print the Hotels on the screen by looking at the order they were added.
+     */
     protected static void listHotels(){
         int i=1;
         if(hotels.size()==0) {
@@ -165,6 +208,10 @@ public abstract class Utilities {
             i++;
         }
     }
+
+    /**
+     * This method is used to print Hotels by looking at their rates.
+     */
     private void sortbyRate() {
         if(hotels.size()==0) {
             System.out.println("No hotels!\n\n");
@@ -181,6 +228,9 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * This method is used to print the Hotels in alphabetical order.
+     */
     public void sortbyAlphabetic() {
         if(hotels.size()==0) {
             System.out.println("No hotels!\n\n");
@@ -197,6 +247,9 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * This method is used to print Hotels by looking at their prices.
+     */
     private void sortbyPrice() {
         if(hotels==null) return;
         PriorityQueue<Hotel> pqP = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.PRICE));
@@ -210,6 +263,10 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * This method is used to print the 5 closest hotels to the desired hotel if the hotel requested by the user is not available.
+     * @param loc location information
+     */
     protected void nearHotels(String loc){
         if(hotels.size()==0) {
             System.out.println("No hotels!\n\n");
@@ -246,15 +303,33 @@ public abstract class Utilities {
     }
 
 }
+
+/**
+ * The pair class consists of a hotel and a key. It is used in the nearHotels method.
+ */
 class Pair implements Comparable<Pair>{
+
+    /**Priority of the Pair*/
     double key;
+    /**Hotel reference*/
     Hotel hotel;
 
+    /**Constructs a Pair object by given parameters
+     * @param key - priority value
+     * @param hotel - hotel reference
+     */
     public Pair(double key , Hotel hotel){
         this.key = key;
         this.hotel = hotel;
     }
 
+    /**
+     * compareTo method
+     * @param o2 other Pair reference
+     * @return Returns 1; if first pair's key value is bigger
+     *                 0; if both pair has same key value
+     *                -1; if first pair's key value is lower
+     */
     @Override
     public int compareTo(Pair o2) {
         return Double.compare(this.key, o2.key);

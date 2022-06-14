@@ -119,31 +119,43 @@ public class HotelManager extends User {
 
     protected void hotelManagerMenu(){
         
-        int option;
-        System.out.println("------------------");
-        System.out.println("Welcome to the Hotel Manager Menu..");
+        int select;
 
-        do{
-            System.out.println("1-> Add a Hotel");
-            System.out.println("2-> Update Hotel Information");
-            System.out.println("3-> Delete a Hotel");
+        do {
+            System.out.println("\n\n      Hotel Manager Menu      ");
+            System.out.println("------------------------");
+            System.out.println("1. Add Hotel");
+            System.out.println("2. Update Hotel Information");
+            System.out.println("3. Delete Hotel");
+            System.out.println("4. View Added Hotels");
+            System.out.println("5. Find Hotel by Location");
+            System.out.println("6. Exit");
 
-            System.out.println("4-> Exit");
-            System.out.print("Enter your choice: ");
-            option= input.nextInt();
-
-            switch (option){
-                case 1: System.out.println("\n-----------------------"); addHotel(); break;
-                case 2: System.out.println("\n-----------------------"); updateHotelInformation(); break;
-                case 3: System.out.println("\n-----------------------"); deleteHotel(); break;
-                case 4: System.out.println("\nExiting.."); break;
-
-                default: System.out.println("Input is not valid! Try again.."); break;
+            System.out.print("Enter : ");
+            select = input.nextInt();
+            switch (select) {
+                case 1:
+                    addHotel();
+                    break;
+                case 2:
+                    updateHotelInformation();
+                    break;
+                case 3:
+                    deleteHotel();
+                    break;
+                case 4:
+                    viewAddedHotels();
+                    break;
+                case 5:
+                    findHotelbyLocation();
+                    break;
+                case 6:
+                    break;
+                default:
+                    System.out.println("Your choice is not correct !");
+                    break;
             }
-        }while (option != 4);
-        
-        //ssss
-        input.close();
+        } while (select != 6);
     }
 
     private void addLocation(Hotel newhotel) {

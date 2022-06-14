@@ -126,8 +126,8 @@ public class TourManager extends User {
     private boolean deleteTour(String tourName){
         for(Tour deleteTour : tours) {
             if(deleteTour.name.equals(tourName)){
-                hotels.remove(deleteTour);
-return true;
+                tours.remove(deleteTour);
+            return true;
             }
         }
         return false;
@@ -153,7 +153,7 @@ return true;
     public void tourManagerMenu() {
         int select;
         do {
-            System.out.println("      Tour Manager Menu      ");
+            System.out.println("\n\n      Tour Manager Menu      ");
             System.out.println("-----------------------");
             System.out.println("1. Add Tour");
             System.out.println("2. Update Tour Information");

@@ -33,6 +33,16 @@ public class Tour implements Comparator<Tour> {
 
     public Tour(){
     }
+    public Tour(String startDate, String endDate, String name, int numberofTickets, LinkedList<String> route, double price, Queue<String> comments, Queue<Integer> rates) {
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.name = name;
+        this.numberofTickets = numberofTickets;
+        this.route = route;
+        this.price = price;
+        this.comments = comments;
+        this.rates = rates;
+    }
 
     @Override
     public String toString() {
