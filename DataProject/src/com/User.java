@@ -15,7 +15,6 @@ public abstract class User extends Utilities implements IUser{
     private String email;
 
     public User(String username, String name, String surName, String password, userType role, String email) {
-
         this.username = username;
         this.name = name;
         this.surName = surName;
@@ -90,6 +89,5 @@ public abstract class User extends Utilities implements IUser{
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
 
