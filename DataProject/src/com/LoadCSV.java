@@ -15,7 +15,7 @@ public class LoadCSV extends Utilities {
         HotelManager hm = new HotelManager();
 
         //vacation_management/DataProject/src/com/
-        String file = "Hotel.csv";
+        String file = "C:\\Users\\Ali Kaya\\Desktop\\dataproject\\vacation_management\\DataProject\\src\\com\\out\\production\\com\\com\\Hotel.csv";
         BufferedReader reader = null;
         String line = "";
 
@@ -36,7 +36,7 @@ public class LoadCSV extends Utilities {
         /**
          * csv storing
          */
-        String file = "Tour.csv";
+        String file = "C:\\Users\\Ali Kaya\\Desktop\\dataproject\\vacation_management\\DataProject\\src\\com\\out\\production\\com\\com\\Tour.csv";
         BufferedReader reader = null;
         String line = "";
 
@@ -89,7 +89,7 @@ public class LoadCSV extends Utilities {
         /**
          * csv storing
          */
-        String file = "HotelManager.csv";
+        String file = "C:\\Users\\Ali Kaya\\Desktop\\dataproject\\vacation_management\\DataProject\\src\\com\\out\\production\\com\\com\\HotelManager.csv";
         BufferedReader reader = null;
         String line = "";
 
@@ -110,7 +110,7 @@ public class LoadCSV extends Utilities {
         /**
          * csv storing
          */
-        String file = "TourManager.csv";
+        String file = "C:\\Users\\Ali Kaya\\Desktop\\dataproject\\vacation_management\\DataProject\\src\\com\\out\\production\\com\\com\\TourManager.csv";
         BufferedReader reader = null;
         String line = "";
 

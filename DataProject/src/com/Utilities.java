@@ -51,7 +51,7 @@ public abstract class Utilities {
     public Utilities(){
         map = new ListGraph(8,true);
         try {
-            BufferedReader csvReader = new BufferedReader(new FileReader("map.csv"));
+            BufferedReader csvReader = new BufferedReader(new FileReader("C:\\Users\\Ali Kaya\\Desktop\\dataproject\\vacation_management\\DataProject\\src\\com\\out\\production\\com\\com\\map.csv"));
             String row;
             while ((row = csvReader.readLine()) != null) { // for vertices
                 String[] data = row.split(";");
@@ -66,7 +66,7 @@ public abstract class Utilities {
             while(iter.hasNext())
                 System.out.println(iter.next());*/
 
-            BufferedReader csvReader_ = new BufferedReader(new FileReader("map.csv"));
+            BufferedReader csvReader_ = new BufferedReader(new FileReader("C:\\Users\\Ali Kaya\\Desktop\\dataproject\\vacation_management\\DataProject\\src\\com\\out\\production\\com\\com\\map.csv"));
             String row_;
             while ((row_ = csvReader_.readLine()) != null) { // for edges
                 String[] data = row_.split(";");
