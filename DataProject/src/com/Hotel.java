@@ -8,8 +8,7 @@ import java.util.*;
  * Otel bilgileri
  */
 
-public class Hotel implements Comparator<Hotel>{
-
+public class Hotel implements Comparator<Hotel>, Comparable<Hotel>{
 
     public enum compareType {
         NAME, PRICE, RATE
@@ -165,6 +164,12 @@ public class Hotel implements Comparator<Hotel>{
         else
             return hotel1.name.compareTo(hotel2.name);
     }
+
+    @Override
+    public int compareTo(Hotel o) {
+        return Double.compare(this.getAveRate(),o.getAveRate());
+    }
+
 }
 class month {
     protected int month;

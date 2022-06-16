@@ -248,13 +248,12 @@ public abstract class Utilities {
         int rate=input.nextInt();
         createHotelsNavigableMap(hotels);
 
-        NavigableSet<Hotel> temp = getByRating(rate);
-        if (temp.size() == 0){
+        if (getByRating(rate).isEmpty()){
             System.out.println("There is no Hotel with this Rate!");
             return false;
         }
         else{
-            System.out.println(temp);
+            System.out.println(getByRating(rate));
             return true;
         }
     }

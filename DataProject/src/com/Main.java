@@ -54,6 +54,7 @@ public class Main extends Utilities{
             } while (menu != 0);
         }
         catch (Exception e){
+            System.out.println("An exception occured!");
         }
         input.close();
     }
