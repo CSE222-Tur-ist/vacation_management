@@ -14,7 +14,7 @@ public class Hotel implements Comparator<Hotel>{
     public enum compareType {
         NAME, PRICE, RATE
     }
-    compareType type = compareType.NAME;
+    public static compareType type = compareType.NAME;
 
     private static final BinarySearchTree<Reservation> reservations = new BinarySearchTree<Reservation>();
     protected String name;
@@ -33,10 +33,9 @@ public class Hotel implements Comparator<Hotel>{
     protected String features; // denize sıfır, özel plaj, aquapark, wifi falan
 
     protected double price;
-    protected Queue<String> comments;
-    protected Queue<Integer> rates;
-
-    protected int rateSize = 0;
+    protected Queue<String> comments = new PriorityQueue<>();
+    protected Queue<Integer> rates = new PriorityQueue<>();
+    protected int rateSize=0;
 
     protected double aveRate= 0.0;
 
@@ -46,8 +45,27 @@ public class Hotel implements Comparator<Hotel>{
         this.numberofRooms = numberofRooms;
         this.features = features;
         this.price = price;
+        Random rand = new Random();
+        for(int i=0;i<5;i++){
+            int ran = rand.nextInt(1,6);
+            this.rates.add(ran);
+        }
         initializeCalendar();
+    }
 
+    @Override
+
+    public int hashCode() {
+
+        return (int)getPrice();
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public double getAveRate() {
+        return calculateAve();
     }
 
     public Hotel(Hotel.compareType type) {
@@ -91,45 +109,53 @@ public class Hotel implements Comparator<Hotel>{
                 System.out.print("     ");
             for(int i=0;i<calendar[M].days.length;i++) {
                     if(!calendar[M].days[i].isFull) System.out.printf(" %3d ",calendar[M].days[i].day);
-                    else System.out.printf("  ");
+                    else System.out.printf("     ");
                     if((i+1)%7==0)System.out.println();
             }
         }
         System.out.println();
     }
-
+    public double calculateAve(){
+        aveRate=0;
+        if (rates.size() != 0) {
+            for (int rate : rates) {
+                aveRate += rate;
+            }
+            aveRate = aveRate / rates.size();
+        }
+        return aveRate;
+    }
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-
+        str.append(" ");
         str.append(name.toUpperCase(Locale.ROOT)).append("\n");
-        str.append("-".repeat(name.length()));
+        str.append("\u2500".repeat(name.length()+3));
         str.append("\nLocation : ").append(location).append("\n");
         str.append("Features : ").append(features).append("\n");
         str.append("Price : ").append(price).append(" ₺\n");
-        str.append("Comments\n");
-        for (String comment : comments)
-            str.append(comment).append("\n");
+        str.append("Number of Rooms : ").append(numberofRooms).append("\n");
 
-        // ortalama hespalama değişebilir
-        for (int rate : rates)
-            aveRate += rate;
-        aveRate = aveRate/rateSize;
-        str.append("Rate : ").append(aveRate).append("\n");
+        if(comments.size()!=0)
+        {
+            str.append("Comments\n");
+            for (String comment : comments)
+                str.append(comment).append("\n");
+        }
+        else if(comments.size()==0) str.append("Comments: -\n");
+        if(rates.size()!=0)
+        {
+            str.append("Rate : ").append(String.format("%.2f",getAveRate())).append("\n");
+        }
+        else if(rates.size()==0) str.append("Rate : -\n");
         return str.toString();
     }
     // Overriding compare()method of Comparator
     @Override
     public int compare(Hotel hotel1, Hotel hotel2) {
 
-        // ---------------------------------------
-        final double ratePriority = 0.60;
-        final double NumOfPeoplePriority = 0.40;
-        final double result1 = (hotel1.aveRate * ratePriority) + (hotel1.rateSize * NumOfPeoplePriority);
-        final double result2 = (hotel2.aveRate * ratePriority) + (hotel2.rateSize * NumOfPeoplePriority);
-
         if (type == compareType.RATE)
-            return Double.compare(result1, result2);
+            return Double.compare(hotel1.getAveRate(),hotel2.getAveRate());
 
         // ---------------------------------------
         if (type == compareType.PRICE)

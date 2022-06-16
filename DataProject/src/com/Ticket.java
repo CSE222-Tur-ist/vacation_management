@@ -23,7 +23,7 @@ public class Ticket {
         StringBuilder str = new StringBuilder();
 
         str.append(ticketName.toUpperCase(Locale.ROOT)).append("\n");
-        str.append("-".repeat(ticketName.length()));
+        str.append("\u2500".repeat(ticketName.length()+3));
         str.append("\n");
         for(int i=0;i<participants.size();i++){
             str.append("   - "+participants.get(i)+"\n");

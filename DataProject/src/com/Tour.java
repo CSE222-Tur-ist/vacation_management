@@ -15,17 +15,17 @@ public class Tour implements Comparator<Tour> {
 
 
     protected double price;
-    protected Queue<String> comments;
-    protected Queue<Integer> rates;
+    protected Queue<String> comments = new PriorityQueue<>();;
+    protected Queue<Integer> rates = new PriorityQueue<>();
 
-    protected int rateSize = 0;
 
+    protected int rateSize=0;
     protected double aveRate = 0.0;
 
     enum compareType {
         NAME, PRICE, RATE
     }
-    private compareType type = compareType.NAME;
+    public static compareType type = compareType.NAME;
 
     public Tour(Tour.compareType type) {
         this.type = type;
@@ -47,41 +47,47 @@ public class Tour implements Comparator<Tour> {
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-
+        str.append(" ");
         str.append(name.toUpperCase(Locale.ROOT)).append("\n");
-        str.append("-".repeat(name.length()));
-        str.append("Route : ");
+        str.append("\u2500".repeat(name.length()+3));
+        str.append("\nRoute : ");
         for(String nextStr : route)
             str.append("  ").append(nextStr);
         str.append("\nStart Date : ").append(startDate).append("\n");
         str.append("End Date : ").append(endDate).append("\n");
         str.append("Price : ").append(price).append(" ₺\n");
-        str.append("Comments\n");
-        if(comments != null){
+
+        if(comments.size()!=0){
+            str.append("Comments\n");
             for (String comment : comments)
                 str.append(comment).append("\n");
         }
-        if (rates != null){
-            for (int rate : rates)
-                aveRate += rate;
-            aveRate = aveRate/rateSize;
-            str.append("Rate : ").append(aveRate).append("\n");
+        else if(comments.size()==0) str.append("Comments: -\n");
+        if (rates.size()!=0){
+            str.append("Rate : ").append(String.format("%.2f",calculateAve())).append("\n");
         }
+        else if(rates.size()==0)str.append("Rate : -\n");
         return str.toString();
     }
-
+    public double calculateAve(){
+        aveRate=0;
+        if (rates.size() != 0) {
+            for (int rate : rates) {
+                aveRate += rate;
+            }
+            aveRate = aveRate / rates.size();
+        }
+        return aveRate;
+    }
+    public double getAve(){
+        return calculateAve();
+    }
     // Overriding compare()method of Comparator
     @Override
     public int compare(Tour tour1, Tour tour2) {
 
-        // ---------------------------------------
-        final double ratePriority = 0.60;
-        final double NumOfPeoplePriority = 0.40;
-        final double result1 = (tour1.aveRate * ratePriority) + (tour1.rateSize * NumOfPeoplePriority);
-        final double result2 = (tour2.aveRate * ratePriority) + (tour2.rateSize * NumOfPeoplePriority);
-
         if (type == compareType.RATE)
-            return Double.compare(result1, result2);
+            return Double.compare(tour1.getAve(),tour2.getAve());
 
         // ---------------------------------------
         if (type == compareType.PRICE)

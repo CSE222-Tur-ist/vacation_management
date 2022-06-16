@@ -30,13 +30,13 @@ public class Reservation implements Comparable<Reservation> {
         StringBuilder str = new StringBuilder();
 
         str.append(reservationName.toUpperCase(Locale.ROOT)).append("\n");
-        str.append("-".repeat(reservationName.length()));
+        str.append("\u2500".repeat(reservationName.length()+3));
         str.append("\n");
         for(int i=0;i<participants.size();i++){
             str.append("   - "+participants.get(i)+"\n");
         }
         str.append("From "+startDate+" to "+endDate);
-        str.append("Payment : ").append(payment).append(" ₺\n");
+        str.append("\nPayment : ").append(payment).append(" ₺\n");
         return str.toString();
     }
 }

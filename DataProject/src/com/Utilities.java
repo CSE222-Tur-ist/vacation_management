@@ -32,6 +32,21 @@ public abstract class Utilities {
     /**It keeps the location information in a way that its indexes are related to the IDs of our map graph.*/
     static ArrayList<String> locationTableforMap = new ArrayList<String>();
 
+    /**
+
+     * This will store the hotels acoording their ratings in a navigable treemap
+
+     */
+
+    public static NavigableMap<Integer, List<Hotel>> HotelsNavigableMap = new TreeMap<>();
+
+    /**
+
+     * This will store the hotels acoording their price in a navigable treemap
+
+     */
+
+    public static AVLTree<Hotel> HotelsAVL = new AVLTree<>();
     /** It is used to create our graph called map*/
     public Utilities(){
         map = new ListGraph(8,true);
@@ -64,7 +79,7 @@ public abstract class Utilities {
             }
             csvReader_.close();
         }catch (Exception e){
-            System.out.println("Error while file reading !");
+            System.err.println("Error while file reading !");
         }
     }
 
@@ -97,7 +112,7 @@ public abstract class Utilities {
             case 2: sortbyRateT();break;
             case 3: sortbyAlphabeticT(); break;
             case 4: sortbyPriceT(); break;
-            default: System.out.println("Your choice is not correct !"); break;
+            default: System.err.println("Your choice is not correct !"); break;
         }
     }
 
@@ -107,11 +122,11 @@ public abstract class Utilities {
     protected static void listTours(){
         int i=1;
         if(tours.size()==0) {
-            System.out.println("No tours!");
+            System.err.println("No tours!");
             return;
         }
         for(Tour nextTour : tours){
-            System.out.println(i + ".  "+ nextTour);
+            System.out.println(i + ". "+ nextTour);
             i++;
         }
     }
@@ -121,10 +136,11 @@ public abstract class Utilities {
      */
     private void sortbyRateT() {
         if(tours.size()==0) {
-            System.out.println("No tours!\n\n");
+            System.err.println("No tours!\n\n");
             return;
         }
-        PriorityQueue<Tour> pqR = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.RATE));
+        Tour.type = Tour.compareType.RATE;
+        PriorityQueue<Tour> pqR = new PriorityQueue<Tour>(tours.size(), new Tour());
         for (Tour nextTour : tours) {
             pqR.add(nextTour);
         }
@@ -140,7 +156,7 @@ public abstract class Utilities {
      */
     private void sortbyAlphabeticT() {
         if(tours.size()==0) {
-            System.out.println("No tours!\n\n");
+            System.err.println("No tours!\n\n");
             return;
         }
         PriorityQueue<Tour> pqA = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.NAME));
@@ -159,7 +175,7 @@ public abstract class Utilities {
      */
     private void sortbyPriceT() {
         if(tours.size()==0) {
-            System.out.println("No tours!\n\n");
+            System.err.println("No tours!\n\n");
             return;
         }
         PriorityQueue<Tour> pqP = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.PRICE));
@@ -179,19 +195,40 @@ public abstract class Utilities {
     public void searchHotels(){
         int choose;
 
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
+        //if(input.hasNextLine()) input.nextLine(); // clear buffer
 
-        System.out.println("------------------------");
-        System.out.println("1. List the Hotels\n2. Most Populars\n3. Sort by a-z\n4. Sort by Price");
+        //System.out.println("------------------------");
+        System.out.println("1. List the Hotels\n2. Most Populars\n3. Sort by a-z\n4. Sort by Price\n5. List of Choosen Rate Hotels");
         System.out.print("Enter : ");
         choose = input.nextInt();
         switch (choose){
             case 1: listHotels(); break;
             case 2: sortbyRate(); break;
-            case 3: sortbyAlphabetic(); break;
-            case 4: sortbyPrice(); break;
-            default: System.out.println("Your choice is not correct !"); break;
+            case 3: sortbyAlphabetic_withSkipList(); break;
+            case 4: sortbyPriceAVL(); break;
+            case 5: choosebyRateNavigableMap();
+                break;
+            default: System.err.println("Your choice is not correct !"); break;
         }
+    }
+
+    private void sortbyRateNavigable() {
+        createHotelsNavigableMap(hotels);
+        for(Integer nextRate : HotelsNavigableMap.navigableKeySet()) {
+            System.out.println(HotelsNavigableMap.get(nextRate));
+        }
+    }
+
+    private void choosebyRateNavigableMap() {
+        System.out.print("Enter Rate of Hotel (0-5): ");
+        int rate=input.nextInt();
+        createHotelsNavigableMap(hotels);
+        System.out.println(getByRating(rate));
+    }
+
+    private void sortbyPriceAVL() {
+        Utilities.createHotelsPriceBalancedTree_AVL(hotels);
+        System.out.println(HotelsAVL);
     }
 
     /**
@@ -200,11 +237,11 @@ public abstract class Utilities {
     protected static void listHotels(){
         int i=1;
         if(hotels.size()==0) {
-            System.out.println("No hotels!\n\n");
+            System.err.println("No hotels!\n\n");
             return;
         }
         for(Hotel nextHotel : hotels){
-            System.out.println(i + ".  "+ nextHotel);
+            System.out.println(i + ". "+ nextHotel);
             i++;
         }
     }
@@ -214,10 +251,11 @@ public abstract class Utilities {
      */
     private void sortbyRate() {
         if(hotels.size()==0) {
-            System.out.println("No hotels!\n\n");
+            System.err.println("No hotels!\n\n");
             return;
         }
-        PriorityQueue<Hotel> pqR = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.RATE));
+        Hotel.type = Hotel.compareType.RATE;
+        PriorityQueue<Hotel> pqR = new PriorityQueue<Hotel>(hotels.size(), new Hotel());
         for (Hotel nextHotel : hotels) {
             pqR.add(nextHotel);
         }
@@ -233,7 +271,7 @@ public abstract class Utilities {
      */
     public void sortbyAlphabetic() {
         if(hotels.size()==0) {
-            System.out.println("No hotels!\n\n");
+            System.err.println("No hotels!\n\n");
             return;
         }
         PriorityQueue<Hotel> pqA = new PriorityQueue<Hotel>(hotels.size(), new Hotel(Hotel.compareType.NAME));
@@ -269,7 +307,7 @@ public abstract class Utilities {
         SkipList<String, String> skipList = new SkipList<>();
 
         for (int i = 0; i < hotels.size(); i++) {
-            skipList.add(hotels.get(i).name.toString().toLowerCase(),"Name: "+ hotels.get(i).name.toString() + " / Location: "+hotels.get(i).location.toString() + " / Features: " + hotels.get(i).features.toString()+
+            skipList.add(hotels.get(i).name.toUpperCase(Locale.ROOT).toString(),"Name: "+ hotels.get(i).name.toUpperCase(Locale.ROOT).toString() + " / Location: "+hotels.get(i).location.toString() + " / Features: " + hotels.get(i).features.toString()+
                     " / Number of Rooms: " + hotels.get(i).numberofRooms + " / Price: " +hotels.get(i).price);
         }
 
@@ -299,14 +337,13 @@ public abstract class Utilities {
      */
     protected void nearHotels(String loc){
         if(hotels.size()==0) {
-            System.out.println("No hotels!\n\n");
+            System.err.println("No hotels!\n\n");
             return;
         }
         double count = 0;
         Hotel tempH;
         ArrayList<Hotel> tempHotels = new ArrayList<>(hotels);
         PriorityQueue<Pair> nearHotelQ = new PriorityQueue<>(8);
-
         for (int i = 0 ; i < hotels.size() ; i++){
             double minDist = Double.POSITIVE_INFINITY;
             tempH = null;
@@ -331,6 +368,83 @@ public abstract class Utilities {
             if (i > 5)break;
         }
     }
+
+
+    /**
+
+     *
+
+     * create Hotels with NavigableMap data structures as sorted access
+
+     *
+
+     * @param hotelList
+
+     */
+
+    public static void createHotelsNavigableMap(ArrayList<Hotel> hotelList) { // O(n)
+
+        for (int i = 0; i <= 5; i++) { // O(1~n) = O(1)
+
+            HotelsNavigableMap.put(i, new ArrayList<>());
+
+        }
+
+        for (Hotel hotel : hotelList) { // O(n)
+
+            HotelsNavigableMap.get((int) hotel.getAveRate()).add(hotel);
+
+        }
+
+    }
+
+
+
+    /**
+
+     * Get the hotels by rating
+
+     */
+
+    public static NavigableSet<Hotel> getByRating(int rating) { // O(n)
+
+        NavigableSet<Hotel> hotels = new TreeSet<>();
+
+        for (Hotel hotel : HotelsNavigableMap.get(rating)) { // O(n)
+
+            hotels.add(hotel);
+
+        }
+
+        return hotels;
+
+    }
+
+
+
+    /**
+
+     * AVL trees provide faster lookups than Red Black Trees because they are more
+
+     * strictly balanced.
+
+     *
+
+     * @param hotelList
+
+     */
+
+    public static void createHotelsPriceBalancedTree_AVL(ArrayList<Hotel> hotelList) { // O(nlog n)
+        Hotel.type = Hotel.compareType.PRICE;
+
+        for (Hotel hotel : hotelList) { // O(n)
+
+            HotelsAVL.insert(hotel);// O(log n)
+
+        }
+
+    }
+
 
 }
 

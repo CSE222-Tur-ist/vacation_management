@@ -1,8 +1,5 @@
 package com;
 
-import com.datastructures.Edge;
-import com.datastructures.ListGraph;
-
 import java.util.*;
 
 public class TourManager extends User {
@@ -15,53 +12,59 @@ public class TourManager extends User {
     public TourManager() {
 
     }
-
     //buradaki rota için farklı data stru. kullanıalbilir
     public void addTour(){ // send request to admin for add tour
-        Tour newTour = new Tour();
+        Tour newtour = new Tour();
         String route;
-        int counter = 0;
-
+        int flag=0;
+        System.out.println("\n----------------- Add tour ----------------");
         if(input.hasNextLine()) input.nextLine(); // clear buffer
 
         System.out.print("Name of Tour : ");
-        newTour.name = input.nextLine();
-        System.out.print("Route of Tour(Ex: Istanbul-Ankara-Izmir) : ");
+        newtour.name = input.nextLine();
+        System.out.print("Route of Tour(istanbul-ankara-izmir) : ");
         route = input.nextLine();
-
-        newTour.route.add(java.util.Arrays.toString(route.split("\\-")));
-
+        newtour.route.add(java.util.Arrays.toString(route.split("\\-")));
         System.out.print("Start Date of Tour : ");
-        newTour.startDate = input.nextLine();
+        newtour.startDate = input.nextLine();
         System.out.print("End Date of Tour : ");
-        newTour.endDate = input.nextLine();
+        newtour.endDate = input.nextLine();
         System.out.print("Number of Tickets for Tour : ");
-        newTour.numberofTickets = input.nextInt();
+        newtour.numberofTickets = input.nextInt();
         System.out.print("Price of Ticket : ");
-        newTour.price = input.nextDouble();
+        newtour.price = input.nextDouble();
 
+        System.out.println("------------------------------------------\n");
         for(Tour nextTour : tours){
-            if(nextTour.name.equals(newTour.name)) System.out.print("This name already exists !");
-            else tours.add(newTour);
+            if(nextTour.name.toUpperCase(Locale.ROOT).equals(newtour.name.toUpperCase(Locale.ROOT))) {
+                flag = 1;
+                System.err.print("This name already exists !");}
+
         }
+        if(flag==0) {
+            tours.add(newtour);
+        }
+
     }
 
 
     public void updateTourInformation(){
         String tourName;
         if(input.hasNextLine()) input.nextLine(); // clear buffer
+        System.out.println("\n----------------- Update tour Information ----------------");
         System.out.print("Name of Tour for Updating : ");
         tourName = input.nextLine();
 
         if(updateTourInformation(tourName)) System.out.println("\nUpdated Succesfully.");
         else System.out.println("\nUpdate is unsuccesfull.");
+        System.out.println("-------------------------------------------------------\n");
 
     }
     private boolean updateTourInformation(String tourName){
-        int select , counter = 0;
+        int select;
         String route;
         for(Tour updateTour : tours){
-            if(updateTour.name.equals(tourName)){
+            if(updateTour.name.toUpperCase(Locale.ROOT).equals(tourName.toUpperCase(Locale.ROOT))){
                 if(input.hasNextLine()) input.nextLine(); // clear buffer
 
 
@@ -93,9 +96,6 @@ public class TourManager extends User {
                             route = input.nextLine();
                             updateTour.route.clear();
                             updateTour.route.add(java.util.Arrays.toString(route.split("\\-")));
-
-                            ListIterator<String> iter = updateTour.route.listIterator();
-
                             break;
 
                         case 6: return true;
@@ -115,53 +115,60 @@ public class TourManager extends User {
 
     public void deleteTour(){
         String tourName;
-
+        System.out.println("\n----------------- Delete tours ----------------");
         if(input.hasNextLine()) input.nextLine(); // clear buffer
         System.out.print("Name of Tour : ");
         tourName = input.nextLine();
 
         if(deleteTour(tourName)) System.out.println("\nTour removed Succesfully.");
-        else System.out.println("\nTour remove is unsuccesfull.");
+        else System.out.println("\nTour remove is unsuccesfull!\n");
+        System.out.println("---------------------------------------------\n");
     }
     private boolean deleteTour(String tourName){
         for(Tour deleteTour : tours) {
-            if(deleteTour.name.equals(tourName)){
+            if(deleteTour.name.toUpperCase(Locale.ROOT).equals(tourName.toUpperCase(Locale.ROOT))){
                 tours.remove(deleteTour);
-            return true;
+                return true;
             }
         }
         return false;
     }
-  
+
 
     private void viewAddedTours() {
-        System.out.println("List of added tours");
+        System.out.println("\n----------------- View added tours ----------------");
+        System.out.println("List of added tours:");
         for (Tour nextTour : tours) {
-            System.out.println("Name of Tour : " + nextTour.name);
+           /* System.out.println("  -Name of Tour : " + nextTour.name);
             // System.out.println("Route of Tour : " + nextTour.route);
-            System.out.println("Start Date of Tour : " + nextTour.startDate);
-            System.out.println("End Date of Tour : " + nextTour.endDate);
-            System.out.println("Number of Tickets for Tour : " + nextTour.numberofTickets);
-            System.out.println("Price of Ticket : " + nextTour.price);
+            System.out.println("  -Start Date of Tour : " + nextTour.startDate);
+            System.out.println("  -End Date of Tour : " + nextTour.endDate);
+            System.out.println("  -Number of Tickets for Tour : " + nextTour.numberofTickets);
+            System.out.println("  -Price of Ticket : " + nextTour.price);
             for (String nextRoute : nextTour.route) {
-                System.out.println(nextRoute);
+                System.out.println("  -Route of tour: " + nextRoute);
             }
-            System.out.println("-----------------------------------------------------");
+            // System.out.println("****");
+            System.out.println();*/
+            System.out.println(nextTour);
         }
+        System.out.println("------------------------------------------------\n");
     }
 
     public void tourManagerMenu() {
         int select;
-        do {
-            System.out.println("\n\n      Tour Manager Menu      ");
-            System.out.println("-----------------------");
-            System.out.println("1. Add Tour");
-            System.out.println("2. Update Tour Information");
-            System.out.println("3. Delete Tour");
-            System.out.println("4. View Added Tours");
-            System.out.println("5. Exit");
 
-            System.out.print("Enter : ");
+        do {
+            System.out.println("\n==> Tour manager Menu <==");
+            for(int i=0;i<25;i++) System.out.print("\u2500");
+            //System.out.println("-------------------------\n");
+            System.out.println("\n1\u27E9 Add Tour");
+            System.out.println("2\u27E9 Update Tour Information");
+            System.out.println("3\u27E9 Delete Tour");
+            System.out.println("4\u27E9 View Added Tours");
+            System.out.println("5\u27E9 Exit");
+
+            System.out.print("\n\u22D9 Enter : ");
             select = input.nextInt();
             switch (select) {
                 case 1:

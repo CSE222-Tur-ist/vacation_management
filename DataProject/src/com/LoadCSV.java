@@ -12,16 +12,19 @@ public class LoadCSV extends Utilities {
         /**
          * csv storing
          */
+        HotelManager hm = new HotelManager();
+
+        //vacation_management/DataProject/src/com/
         String file = "Hotel.csv";
         BufferedReader reader = null;
         String line = "";
-
 
         reader = new BufferedReader(new FileReader(file));
         while ((line = reader.readLine()) != null) {
             String[] row = line.split(";");
             Hotel newHotel = new Hotel(row[0], row[1], Integer.parseInt(row[2]), row[3], Double.parseDouble(row[4]));
-            hotels.add(newHotel);
+            //hotels.add(newHotel);
+            hm.addHotel(newHotel);
         }/*
         for (int i = 0; i < hotels.size(); i++) {
             System.out.println(hotels.get(i).name);;
@@ -123,11 +126,4 @@ public class LoadCSV extends Utilities {
         }*/
         reader.close();
     }
-
-
-
-
-
-
-
 }

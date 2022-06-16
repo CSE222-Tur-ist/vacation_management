@@ -17,19 +17,20 @@ public class Admin extends User {
 
     // manage tour managers
     public void addTourManager() {
-        if (input.hasNextLine())
-            input.nextLine(); // clear buffer
         print("Enter the personal informations of new Tour Manager:");
         String username = "";
         boolean isExist = false;
 
         do {
-            print("UserName : ");
+            if (input.hasNextLine())
+                input.nextLine(); // clear buffer
+            print("\n"
+                    + "UserName : ");
             username = input.nextLine();
             for (TourManager tourManager : tourManagers) {
                 if (tourManager.getUsername().equals(username)) {
                     isExist = true;
-                    System.err.print("Username  already given another tour manager.");
+                    System.err.print("Username already given another tour manager.\n");
                     break;
                 }
             }
@@ -45,6 +46,8 @@ public class Admin extends User {
         String email = input.nextLine();
         TourManager tourManager = new TourManager(username, name, surName, password, userType.TOUR_MANAGER, email);
         tourManagers.add(tourManager);
+
+
     }
 
     public void addTourManager(TourManager tourManager) {
@@ -52,10 +55,11 @@ public class Admin extends User {
     }
 
     public boolean removeTourManager(String username) {
+
         for (TourManager tourManager : tourManagers) {
             if (tourManager.getUsername().equals(username)) {
                 tourManagers.remove(tourManager);
-                print("The tour manager " + username + "is removed from the system.");
+                print("\nThe tour manager " + username + " is removed from the system!");
                 return true;
             }
         }
@@ -64,8 +68,6 @@ public class Admin extends User {
     }
 
     public boolean updateTourManager(TourManager tourManager) {
-        if (input.hasNextLine())
-            input.nextLine(); // clear buffer
         print("Current name: " + tourManager.getName());
         print("New name : ");
         tourManager.setName(input.nextLine());
@@ -84,18 +86,18 @@ public class Admin extends User {
 
     // manage hotel managers
     public void addHotelManager() {
-        if (input.hasNextLine())
-            input.nextLine(); // clear buffer
         print("Enter the personal informations of new hotel manager:");
         String username = "";
         boolean isExist = false;
         do {
+            if (input.hasNextLine())
+                input.nextLine(); // clear buffer
             print("Username : ");
             username = input.nextLine();
             for (HotelManager hm : hotelManagers) {
                 if (hm.getUsername().equals(username)) {
                     isExist = true;
-                    System.err.print("Username already given another hotel manager.");
+                    System.err.print("Username already given another hotel manager.\n");
                 }
             }
         } while (isExist);
@@ -121,7 +123,7 @@ public class Admin extends User {
         for (HotelManager hotelManager : hotelManagers) {
             if (hotelManager.getUsername().equals(username)) {
                 hotelManagers.remove(hotelManager);
-                print("The hotel manager " + username + "is removed from the system.");
+                print("\nThe hotel manager " + username + " is removed from the system!\n");
                 return true;
             }
         }
@@ -130,10 +132,8 @@ public class Admin extends User {
     }
 
     public boolean updateHotelManager(HotelManager hotelManager) {
-        if (input.hasNextLine())
-            input.nextLine(); // clear buffer
         print("Current name: " + hotelManager.getName());
-        print("New name : ");
+        System.out.println("New name : ");
         hotelManager.setName(input.nextLine());
         print("Current surname: " + hotelManager.getSurName());
         print("New surname : ");
@@ -178,9 +178,10 @@ public class Admin extends User {
         for (HotelManager hm : hotelManagers) {
             if (hm.getUsername().equals(username)) {
                 manager = hm;
+                return manager;
             }
         }
-        System.err.println("No hotel manager with this user name.");
+        System.out.println("No hotel manager with this user name.\n");
         return manager;
     }
 
@@ -190,59 +191,112 @@ public class Admin extends User {
         for (TourManager tm : tourManagers) {
             if (tm.getUsername().equals(username)) {
                 manager = tm;
+                return manager;
             }
         }
-        System.err.println("No tour manager with this user name.");
+        System.out.println("No tour manager with this user name.\n");
         return manager;
     }
 
 
     public void getAllHotelManagers() {
-        hotelManagers.forEach(System.out::println);
+
+        System.out.println("List of added hotel managers:");
+        for (HotelManager managers : hotelManagers) {
+            System.out.println("  -Name&Surname of manager : " + managers.getName()+" "+managers.getSurName());
+            System.out.println("  -Email of manager : " + managers.getEmail());
+            System.out.println();
+        }
     }
 
     public void getAllTourManagers() {
-        tourManagers.forEach(System.out::println);
+
+        System.out.println("List of added tour managers:");
+        for (TourManager managers : tourManagers) {
+            System.out.println("  -Name&Surname of manager : " + managers.getName()+" "+managers.getSurName());
+            System.out.println("  -Email of manager : " + managers.getEmail());
+            System.out.println();
+        }
+
     }
 
     protected void adminMenu(){
         //maindendeki login methodu buraya yonlendiriyor
         int option;
-        System.out.println("------------------");
-        System.out.println("Welcome to the Admin Menu..");
 
         do{
-            System.out.println("1-> Add Tour Manager to the system");
-            System.out.println("2-> Remove Tour Manager from the system");
-            System.out.println("3-> Update a Tour Manager in the system");
-            System.out.println("4-> Add Hotel Manager to the system");
-            System.out.println("5-> Remove Hotel Manager from the system");
-            System.out.println("6-> Update a Hotel Manager in the system");
+            System.out.println("\n==> Welcome to the Admin Menu <==");
+            for(int i=0;i<33;i++) System.out.print("\u2500");
+            //System.out.println("---------------------------------\n");
+            System.out.println("\n1\u27E9 Add Tour Manager to the system");
+            System.out.println("2\u27E9 Remove Tour Manager from the system");
+            System.out.println("3\u27E9 Update a Tour Manager in the system");
+            System.out.println("4\u27E9 Add Hotel Manager to the system");
+            System.out.println("5\u27E9 Remove Hotel Manager from the system");
+            System.out.println("6\u27E9 Update a Hotel Manager in the system");
+            System.out.println("7\u27E9 View added tour managers");
+            System.out.println("8\u27E9 View added hotel managers");
 
-            System.out.println("7-> Exit");
-            System.out.print("Enter your choice: ");
+            System.out.println("9\u27E9 Exit");
+            System.out.print("\n\u22D9 Enter your choice: ");
             option= input.nextInt();
 
             switch (option){
-                case 1: System.out.println("\n-----------------------"); addTourManager(); break;
+                case 1: System.out.println("\n---------- Add Tour Manager to the system -----------------");
+                    addTourManager();
+                    System.out.println("-----------------------------------------------------------\n");
+                    break;
                 case 2:
-                    System.out.println("Username of tour manager: ");
+                    if(input.hasNextLine()) input.nextLine();
+                    System.out.println("\n---------- Remove Tour Manager from the system -----------------");
+                    System.out.print("Username of tour manager: ");
                     String tManagerName = input.nextLine();
-                    System.out.println("\n-----------------------"); removeTourManager(tManagerName);
+                    removeTourManager(tManagerName);
+                    System.out.println("----------------------------------------------------------------\n");
                     break;
                 case 3:
-                    System.out.println("Username of tour manager: ");
+                    System.out.println("\n---------- Update a Tour Manager in the system -----------------");
+                    if(input.hasNextLine()) input.nextLine();
+                    System.out.print("Username of tour manager: ");
                     tManagerName = input.nextLine();
-                    System.out.println("\n-----------------------"); //updateTourManager();
+                    updateTourManager(getTourManager(tManagerName));
+                    break;
+                case 4:
+                    System.out.println("\n---------- Add Hotel Manager to the system -----------------");
+                    addHotelManager();
+                    System.out.println("------------------------------------------------------------\n");
+                    break;
+                case 5:
+                    if(input.hasNextLine()) input.nextLine();
+                    System.out.println("\n---------- Remove Hotel Manager from the system -----------------");
+                    System.out.print("Username of hotel manager: ");
+                    tManagerName = input.nextLine();
+                    removeHotelManager(tManagerName);
+                    System.out.println("-----------------------------------------------------------------\n");
+                    break;
+                case 6:
+                    System.out.println("\n---------- Update a Hotel Manager in the system -----------------");
+                    if(input.hasNextLine()) input.nextLine();
+                    System.out.print("Username of hotel manager: ");
+                    tManagerName = input.nextLine();
+                    updateHotelManager(getHotelManager(tManagerName));
+                    break;
+                case 7:
+                    System.out.println("\n----------------- View added tour managers ----------------");
+                    getAllTourManagers();
+                    System.out.println("-------------------------------------------------------------------\n");
+                    break;
+                case 8:
+                    System.out.println("\n----------------- View added hotel managers ----------------");
+                    getAllHotelManagers();
+                    System.out.println("-------------------------------------------------------------------\n");
                     break;
 
-                case 16: System.out.println("\nExiting.."); break;
+                case 9: break;
 
                 default: System.out.println("Input is not valid! Try again.."); break;
             }
-        }while (option != 7);
-
-        input.close();
+        }while (option != 9);
     }
     // -----------------------------------------------------
 
