@@ -98,7 +98,7 @@ public abstract class Utilities {
     /**
      * This method is used to sort the Tours in different ways and print them on the screen.
      */
-    public void searchTours() {
+    public boolean searchTours() {
         int choose;
 
         //if(input.hasNextLine()) input.nextLine(); // clear buffer
@@ -108,27 +108,30 @@ public abstract class Utilities {
         System.out.print("Enter : ");
         choose = input.nextInt();
         switch (choose){
-            case 1: listTours(); break;
-            case 2: sortbyRateTInsertion();break;
-            case 3: sortbyAlphabeticT(); break;
-            case 4: sortbyPriceT(); break;
-            default: System.err.println("Your choice is not correct !"); break;
+            case 1: return listTours();
+            case 2: return sortbyRateTInsertion();
+            case 3: return sortbyAlphabeticT();
+            case 4: return sortbyPriceT();
+            default:
+                System.err.println("Your choice is not correct !");
+                return false;
         }
     }
 
     /**
      * This method is used to print the Tours on the screen by looking at the order they were added.
      */
-    protected static void listTours(){
+    protected static boolean listTours(){
         int i=1;
         if(tours.size()==0) {
             System.err.println("No tours!");
-            return;
+            return false;
         }
         for(Tour nextTour : tours){
             System.out.println(i + ". "+ nextTour);
             i++;
         }
+        return true;
     }
 
     /**
@@ -153,10 +156,10 @@ public abstract class Utilities {
 
 
 
-    private void sortbyRateTInsertion() {
+    private boolean sortbyRateTInsertion() {
         if(tours.size()==0) {
             System.err.println("No tours!\n\n");
-            return;
+            return false;
         }
         System.out.println("\n\n");
         Tour.type = Tour.compareType.RATE;
@@ -166,15 +169,16 @@ public abstract class Utilities {
             System.out.println(i + ".  " + nextTour);
             i++;
         }
+        return true;
     }
 
     /**
      * This method is used to print the tours in alphabetical order.
      */
-    private void sortbyAlphabeticT() {
+    private boolean sortbyAlphabeticT() {
         if(tours.size()==0) {
             System.err.println("No tours!\n\n");
-            return;
+            return false;
         }
         PriorityQueue<Tour> pqA = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.NAME));
         for (Tour nextTour : tours) {
@@ -185,15 +189,16 @@ public abstract class Utilities {
             System.out.println(i + ".  " + nextTour);
             i++;
         }
+        return true;
     }
 
     /**
      * This method is used to print tours by looking at their prices.
      */
-    private void sortbyPriceT() {
+    private boolean sortbyPriceT() {
         if(tours.size()==0) {
             System.err.println("No tours!\n\n");
-            return;
+            return false;
         }
         PriorityQueue<Tour> pqP = new PriorityQueue<Tour>(tours.size(), new Tour(Tour.compareType.PRICE));
         for (Tour nextTour : tours) {
@@ -204,12 +209,13 @@ public abstract class Utilities {
             System.out.println(i + ".  " + nextTour);
             i++;
         }
+        return true;
     }
 
     /**
      * This method is used to sort the Hotels in different ways and print them on the screen.
      */
-    public void searchHotels(){
+    public boolean searchHotels(){
         int choose;
 
         //if(input.hasNextLine()) input.nextLine(); // clear buffer
@@ -219,13 +225,14 @@ public abstract class Utilities {
         System.out.print("Enter : ");
         choose = input.nextInt();
         switch (choose){
-            case 1: listHotels(); break;
-            case 2: sortbyRate(); break;
-            case 3: sortbyAlphabetic_withSkipList(); break;
-            case 4: sortbyPriceAVL(); break;
-            case 5: choosebyRateNavigableMap();
-                break;
-            default: System.err.println("Your choice is not correct !"); break;
+            case 1: return listHotels();
+            case 2: return sortbyRate();
+            case 3: return sortbyAlphabetic_withSkipList();
+            case 4: return sortbyPriceAVL();
+            case 5: return choosebyRateNavigableMap();
+            default:
+                System.err.println("Your choice is not correct !");
+                return false;
         }
     }
 
@@ -236,40 +243,55 @@ public abstract class Utilities {
         }
     }
 
-    private void choosebyRateNavigableMap() {
+    private boolean choosebyRateNavigableMap() {
         System.out.print("Enter Rate of Hotel (0-5): ");
         int rate=input.nextInt();
         createHotelsNavigableMap(hotels);
-        System.out.println(getByRating(rate));
+
+        NavigableSet<Hotel> temp = getByRating(rate);
+        if (temp.size() == 0){
+            System.out.println("There is no Hotel with this Rate!");
+            return false;
+        }
+        else{
+            System.out.println(temp);
+            return true;
+        }
     }
 
-    private void sortbyPriceAVL() {
+    private boolean sortbyPriceAVL() {
+        if(hotels.size()==0) {
+            System.err.println("No hotels!\n\n");
+            return false;
+        }
         Utilities.createHotelsPriceBalancedTree_AVL(hotels);
         System.out.println(HotelsAVL);
+        return true;
     }
 
     /**
      * This method is used to print the Hotels on the screen by looking at the order they were added.
      */
-    protected static void listHotels(){
+    protected static boolean listHotels(){
         int i=1;
         if(hotels.size()==0) {
             System.err.println("No hotels!\n\n");
-            return;
+            return false;
         }
         for(Hotel nextHotel : hotels){
             System.out.println(i + ". "+ nextHotel);
             i++;
         }
+        return true;
     }
 
     /**
      * This method is used to print Hotels by looking at their rates.
      */
-    private void sortbyRate() {
+    private boolean sortbyRate() {
         if(hotels.size()==0) {
             System.err.println("No hotels!\n\n");
-            return;
+            return false;
         }
         Hotel.type = Hotel.compareType.RATE;
         PriorityQueue<Hotel> pqR = new PriorityQueue<Hotel>(hotels.size(), new Hotel());
@@ -281,6 +303,7 @@ public abstract class Utilities {
             System.out.println(i + ".  " + nextHotel);
             i++;
         }
+        return true;
     }
 
     /**
@@ -319,8 +342,12 @@ public abstract class Utilities {
     }
 
 
-    public static void sortbyAlphabetic_withSkipList() {
-    
+    public static boolean sortbyAlphabetic_withSkipList() {
+
+        if(hotels.size()==0) {
+            System.err.println("No hotels!\n\n");
+            return false;
+        }
         SkipList<String, String> skipList = new SkipList<>();
 
         for (int i = 0; i < hotels.size(); i++) {
@@ -331,6 +358,7 @@ public abstract class Utilities {
         for (String i : skipList) {
         	System.out.println(skipList.get(i));
         }
+        return true;
     }
 
     public static void sortbyPrice__withSkipList(){

@@ -34,18 +34,18 @@ public class Customer extends User {
      * If that tour has a ticket left, the buying operation is successful.
      */
     private void buyTicketForTour() {
-        System.out.println("\n");
-        searchTours();
         String tourName;
+        System.out.println("\n");
+        if (searchTours()){
+            if(input.hasNextLine()) input.nextLine(); // clear buffer
+            System.out.print("\nEnter tour name for buy a Ticket : ");
+            tourName = input.nextLine();
 
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
-        System.out.print("\nEnter tour name for buy a Ticket : ");
-        tourName = input.nextLine();
-
-        for(Tour ticketTour : tours) {
-            if (ticketTour.name.toUpperCase(Locale.ROOT).equals(tourName.toUpperCase(Locale.ROOT))) {
-                if(buyTicketForTourHelper(ticketTour)) System.out.println("\nTicket Bought Successfully.");
-                else System.out.println("\nNo Tickets Left !");
+            for(Tour ticketTour : tours) {
+                if (ticketTour.name.toUpperCase(Locale.ROOT).equals(tourName.toUpperCase(Locale.ROOT))) {
+                    if(buyTicketForTourHelper(ticketTour)) System.out.println("\nTicket Bought Successfully.");
+                    else System.out.println("\nNo Tickets Left !");
+                }
             }
         }
     }
@@ -139,19 +139,20 @@ public class Customer extends User {
      */
     private void makeReservationForHotel(){
         System.out.println("\n");
-        searchHotels();
         String hotelName;
-        if(input.hasNextLine()) input.nextLine(); // clear buffer
-        System.out.print("\nEnter hotel name to make reservation : ");
-        hotelName = input.nextLine();
+        if (searchHotels()){
+            if(input.hasNextLine()) input.nextLine(); // clear buffer
+            System.out.print("\nEnter hotel name to make reservation : ");
+            hotelName = input.nextLine();
 
-        for(Hotel reservationHotel : hotels) {
-            if(hotelName.toUpperCase(Locale.ROOT).equals(reservationHotel.name.toUpperCase(Locale.ROOT))){
-                if(makeReservationForHotel(reservationHotel)) {
-                    System.out.println("\nReservation made Successfully.");
-                }
-                else{
-                    System.out.println("\nNo Rooms Left or Dates are not Available !\n");
+            for(Hotel reservationHotel : hotels) {
+                if(hotelName.toUpperCase(Locale.ROOT).equals(reservationHotel.name.toUpperCase(Locale.ROOT))){
+                    if(makeReservationForHotel(reservationHotel)) {
+                        System.out.println("\nReservation made Successfully.");
+                    }
+                    else{
+                        System.out.println("\nNo Rooms Left or Dates are not Available !\n");
+                    }
                 }
             }
         }
