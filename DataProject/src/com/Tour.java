@@ -4,7 +4,7 @@ import com.datastructures.Graph;
 
 import java.util.*;
 
-public class Tour implements Comparator<Tour> {
+public class Tour implements Comparator<Tour>, Comparable<Tour> {
     protected String startDate;
     protected String endDate;
     protected String name;
@@ -95,5 +95,10 @@ public class Tour implements Comparator<Tour> {
         else
             return tour1.name.compareTo(tour2.name);
 
+    }
+
+    @Override
+    public int compareTo(Tour o) {
+        return compare(this,o);
     }
 }

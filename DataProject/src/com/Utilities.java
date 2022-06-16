@@ -109,7 +109,7 @@ public abstract class Utilities {
         choose = input.nextInt();
         switch (choose){
             case 1: listTours(); break;
-            case 2: sortbyRateT();break;
+            case 2: sortbyRateTInsertion();break;
             case 3: sortbyAlphabeticT(); break;
             case 4: sortbyPriceT(); break;
             default: System.err.println("Your choice is not correct !"); break;
@@ -146,6 +146,23 @@ public abstract class Utilities {
         }
         int i = 1;
         for (Tour nextTour : pqR) {
+            System.out.println(i + ".  " + nextTour);
+            i++;
+        }
+    }
+
+
+
+    private void sortbyRateTInsertion() {
+        if(tours.size()==0) {
+            System.err.println("No tours!\n\n");
+            return;
+        }
+        System.out.println("\n\n");
+        Tour.type = Tour.compareType.RATE;
+        InsertionSort.sort(tours);
+        int i = 1;
+        for (Tour nextTour : tours) {
             System.out.println(i + ".  " + nextTour);
             i++;
         }
